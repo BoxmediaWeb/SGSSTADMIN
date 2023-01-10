@@ -1,0 +1,36 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <div class="flex flex-col sm:items-center">
+        <div class="w-full">
+            <mat-tab-group class="pt-7 w-full">
+                <mat-tab [label]="'Editor'">
+                    <div class="mb-10 w-full">
+                        <form
+                        [formGroup]="detalleDocumentoForm" crossOrigin="Anonymous">
+                            <angular-editor [(ngModel)]="htmlContent" height="1000" formControlName="texto" [config]="editorConfig"></angular-editor>
+                        </form>
+                    </div>
+                </mat-tab>
+
+                <mat-tab [label]="'Previsualización'" class="block relative">
+
+                    <div class="bg-[#E1F5FE] p-5">
+                        <button
+                                (click)="guardarMaestro()"
+                                class="bg-[#03A9F4] text-white bg-cyan-500 shadow-md shadow-cyan-500/50"
+                                mat-flat-button>
+                                Guardar
+                                <mat-icon [svgIcon]="'heroicons_outline:save'" class="ml-2"></mat-icon>
+                        </button>
+                    </div>
+            
+                    <div class="px-10 py-20" [innerHTML]="htmlContent" id="contenedor" #content>
+                        {{htmlContent}}
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+
+    </div>
+
+</div>
+

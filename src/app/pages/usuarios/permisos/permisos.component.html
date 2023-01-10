@@ -1,0 +1,76 @@
+<div class="w-full">
+
+    <div class="mt-2">
+        <h2 class="text-3xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate m-5">
+            Configurar permisos
+        </h2>
+    </div>
+
+    <div class="mx-5 mt-10">
+        <mat-accordion class="example-headers-align">
+            <mat-expansion-panel class="py-3">
+
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-icon [svgIcon]="'heroicons_outline:collection'" class="mr-2"></mat-icon>
+                        Modulos
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <div class="grid gap-2 grid-cols-2 md:grid-cols-5 w-full px-5">
+                    <div *ngFor="let modulo of dataModulos" class="my-2">
+                        <span class="text-md font-medium truncate">{{modulo?.title}}</span>
+                        <mat-slide-toggle [(ngModel)]="!modulo.Role_Modulo.hidden" class="flex"><!--[(ngModel)]="modulo."-->
+                            <mat-icon *ngIf="modulosActivados[modulo?.title]" [svgIcon]="'heroicons_outline:eye'" class="ml-2"></mat-icon>
+                            <mat-icon *ngIf="!modulosActivados[modulo?.title]" [svgIcon]="'heroicons_outline:eye-off'" class="ml-2"></mat-icon>
+                        </mat-slide-toggle>
+                    </div>
+                </div>
+
+            </mat-expansion-panel>
+        
+        </mat-accordion>
+
+    </div>
+
+
+
+    <div class="mx-5 mt-10">
+        <mat-accordion class="example-headers-align">
+            <mat-expansion-panel class="py-3">
+
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-icon [svgIcon]="'heroicons_outline:key'" class="mr-2"></mat-icon>
+                        Permisos
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+
+                <ng-container *ngFor="let permiso of dataPermisos">
+                    <div class="flex flex-row items-center justify-between py-4 px-0.5">
+                        <div class="flex flex-col">
+                            <div class="font-medium">{{permiso?.nombre}}</div>
+                        </div>
+        
+                        <mat-slide-toggle [(ngModel)]="permiso.Role_Permiso.estado" class="flex">
+                            <mat-icon [svgIcon]="'heroicons_outline:lock-closed'" class="ml-2"></mat-icon>
+                        </mat-slide-toggle>
+                    </div>
+                </ng-container>
+
+
+            </mat-expansion-panel>
+        
+        </mat-accordion>
+
+    </div>
+    
+    <div class="flex justify-end my-10 mx-5">
+        <button class="bg-[#00b540] text-white" (click)="guardar()" mat-button>Guardar</button>  
+    </div>
+</div>
+
+
+
+

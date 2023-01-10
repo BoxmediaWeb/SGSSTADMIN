@@ -1,0 +1,193 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+    <div class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
+        <div class="flex-1 min-w-0">
+            <!-- Breadcrumbs -->
+            <div class="flex flex-wrap items-center font-medium">
+                <div>
+                    <a class="whitespace-nowrap text-primary-500">Estándares</a>
+                </div>
+
+                <div class="flex items-center ml-1 whitespace-nowrap">
+                    <mat-icon
+                        class="icon-size-5 text-secondary"
+                        [svgIcon]="'heroicons_solid:chevron-right'"></mat-icon>
+                    <div style="cursor: pointer;" class="ml-1 text-primary-500">gfdfgdfg</div>
+                </div>
+                <div class="flex items-center ml-1 whitespace-nowrap">
+                    <mat-icon
+                        class="icon-size-5 text-secondary"
+                        [svgIcon]="'heroicons_solid:chevron-right'"></mat-icon>
+                    <span class="ml-1 text-secondary">Documento</span>
+                </div>
+            </div>
+            <!-- Title -->
+            <div class="mt-2">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+                    dfdsfdsf
+                </h2>
+                <h3 class="text-1xl md:text-2xl tracking-tight leading-7 sm:leading-10 truncate">
+                    Formato N°1: {{nombre_estandar}}
+                </h3>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="flex flex-col sm:items-center mx-20">
+        
+        <div class="text-center border w-full block border-indigo-600 flex flex-row mb-8">
+            <div class="text-center items-center border w-full flex flex-col">
+                <img src="assets/images/logobox.png" class="h-30 w-30 p-5" alt="logo">
+            </div>
+
+            <div class="text-center grow border-x w-full block border-indigo-600 flex flex-col">
+                <div class="text-center h-1/2 border-b border-indigo-600 w-full block flex flex-col items-center justify-center">
+                    {{nombre_empresa}}
+                </div>
+                <div class="text-center h-1/2 w-full block flex flex-col items-center content-center justify-center">
+                    {{nombre_documento}}
+                </div>
+            </div>
+
+            <div class="text-center w-full block flex flex-col">
+                <div class="text-center border-b border-indigo-600 w-full block flex flex-col h-1/2">
+                    <div class="pl-2 h-1/2 text-left border-b w-full block border-indigo-600 flex flex-col justify-center">
+                        Código:{{codigo}}
+                    </div>
+                    <div class="pl-2 text-left w-full block flex flex-col h-1/2 justify-center">
+                        Fecha:{{fecha}}
+                    </div>
+                </div>
+                <div class="text-center h-1/2 w-full block flex flex-col h-1/2">
+                    <div class="pl-2 text-left border-b w-full block border-indigo-600 flex flex-col h-1/2 justify-center">
+                        Versión:{{version}}
+                    </div>
+                    <div class="pl-2 text-left w-full block border-indigo-600 flex flex-col h-1/2 justify-center">
+                        Página:{{pagina}}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!--
+        <div>
+            <h2 class="font-bold text-2xl mt-3">1. Objeto</h2>
+            <p>
+                Describir y relacionar de manera detallada las funciones y responsabilidades en Seguridad y Salud en el Trabajo, que debe ejecutar el personal en cada uno de los cargos de NOMBRE DE LA EMPRESA.
+            </p>
+        </div>
+    
+        <div>
+            <h2 class="font-bold text-2xl  mt-3">2. Alcance</h2>
+            <p>
+                Las funciones y responsabilidades en Seguridad y Salud en el Trabajo, contenidas en este manual, son de cumplimiento obligatorio para las personas vinculadas a la empresa ubicadas dentro de su estructura organizacional. Con aplicación en el ámbito laboral y personal en la ejecución de los diferentes trabajos y servicios que realicen en NOMBRE DE LA EMPRESA.
+            </p>
+        </div>
+    
+        <div>
+            <h2 class="font-bold text-2xl  mt-3">3. Definiciones</h2>
+            <p>
+                Manual de funciones: Documento que describe la relación detallada de las actividades, tareas, y responsabilidades que corresponden ejecutar en un cargo determinado por la organización.
+            </p>
+
+            <div class="ml-5">
+                <h3 class="font-bold">Cargo:</h3>
+                <p>
+                    Es la reunión de todas aquellas actividades y funciones realizadas por una sola persona, que pueden unificarse en un solo concepto y ocupa un lugar formal en el organigrama.
+                </p>
+        
+                <h3 class="font-bold">Dirección:</h3>
+                <p>
+                    Consiste en coordinar el esfuerzo común de los subordinados para alcanzar las metas de la organización. 
+                </p>
+        
+                <h3 class="font-bold">Planificación:</h3>
+                <p>
+                    Consiste en determinar por anticipado que debe hacerse, como debe hacerse, cuando debe hacerse, y quien debe hacerlo.
+                </p>
+        
+                <h3 class="font-bold">Control:</h3>
+                <p>
+                    Es el proceso de revisar y medir el desempeño con el objeto de determinar el grado hasta el cual se están logrando los planes y objetivos de la organización.
+                </p>
+        
+                <h3 class="font-bold">Mejora continua:</h3>
+                <p>
+                    Actividades recurrentes para aumentar la capacidad para cumplir con los objetivos.
+                </p>
+        
+                <h3 class="font-bold">Funciones de planeación:</h3>
+                <p>
+                    se determina si son diarias, semanales, mensuales o anuales y semestrales.
+                </p>
+                
+                <h3 class="font-bold">Funciones de ejecución:</h3>
+                <p>
+                    se determina si son diarias, semanales o mensuales o anuales y semestrales.
+                </p>
+        
+                <h3 class="font-bold">Funciones control y aseguramiento:</h3>
+                <p>
+                    se determina si son diarias, semanales o mensuales o anuales y semestrales.
+                </p>
+        
+                <h3 class="font-bold">Funciones de mejoramiento:</h3>
+                <p>
+                    se determina si son diarias, semanales o mensuales o anuales y semestrales.
+                </p>
+
+                <h3 class="font-bold">Responsabilidad:</h3>
+                <p>
+                    Capacidad de cumplir estrictamente con los valores morales y éticos; al igual que con las responsabilidades laborales asignadas.
+                </p>
+
+                <h3 class="font-bold">Formación académica:</h3>
+                <p>
+                    Son los Estudios o contenidos académicos, realizados en Instituciones Públicas o Privadas debidamente reconocidas por el Gobierno Nacional, correspondientes a la Educación Secundaria y Universitaria o Postgrado.
+                </p>
+
+                <h3 class="font-bold">Certificación de los estudios:</h3>
+                <p>
+                    Los estudios se acreditarán mediante la presentación de certificados, Diplomas, Actas de Grado otorgados por las Instituciones correspondientes.
+                </p>
+
+            </div>
+        </div>
+        -->
+
+        <!--
+        <div class="w-full text-left" *ngFor="let contenido of contenidos">
+            <p [ngClass]="contenido.estilos" *ngIf="contenido.tag=='p'" [innerHTML]="contenido.contenido">{{contenido.contenido}}</p>
+            <h2 [ngClass]="contenido.estilos" *ngIf="contenido.tag=='h2'" [innerHTML]="contenido.contenido">{{contenido.contenido}}</h2>
+            <h3 [ngClass]="contenido.estilos" *ngIf="contenido.tag=='h3'">{{contenido.contenido}}</h3>
+        </div>
+        -->
+
+        <div class="mb-10">
+            <form
+            [formGroup]="detalleDocumentoForm" crossOrigin="Anonymous">
+                <button
+                    (click)="setContenido()"
+                    class="mb-5"
+                    mat-flat-button
+                    [color]="'primary'">
+                    Guardar
+                </button>
+                <button
+                    (click)="inputsModal()"
+                    class="mb-5 ml-2"
+                    mat-flat-button
+                    [color]="'primary'">
+                    Inputs
+                </button>
+                <angular-editor height="1000" formControlName="texto" [config]="editorConfig"></angular-editor>
+                <!--<quill-editor formControlName="texto"></quill-editor>-->
+            </form>
+        </div>
+
+    </div>
+
+</div>

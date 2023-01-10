@@ -1,0 +1,334 @@
+<div class="flex flex-col w-full px-6 overflow-hidden">
+    <div class="w-full"> 
+                <!-- Header -->
+                <div class="relative w-full h-40 sm:h-48 px-8 sm:px-12 bg-accent-100 dark:bg-accent-700">
+                    <!-- Background -->
+                    <ng-container><!--*ngIf="contact.background"-->
+                        <img
+                            class="absolute inset-0 object-cover w-full h-full"
+                            src="assets/images/banner.jpg">
+                    </ng-container>
+                    <!-- Close button -->
+                    <div class="flex items-center justify-end w-full max-w-3xl mx-auto pt-6">
+                        <button
+                            class="text-white"
+                            mat-button>
+                            <mat-icon
+                                class="text-white mr-2"
+                                [svgIcon]="'heroicons_outline:arrow-left'"></mat-icon>
+                            Usuarios
+                        </button>
+                    </div>
+                </div>
+
+    
+                <form [formGroup]="perfilForm" class="w-full">
+            
+                    <div class="flex flex-auto pl-6 pr-6 items-end -mt-16">
+                        <div class="relative flex items-center justify-center w-32 h-32 rounded-full overflow-hidden ring-4 ring-bg-card">
+                            <!-- Upload / Remove avatar -->
+                            <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+                            <div class="absolute inset-0 flex items-center justify-center z-20">
+                                <div>
+                                    <input
+                                        id="avatar-file-input"
+                                        class="absolute h-0 w-0 opacity-0 invisible pointer-events-none"
+                                        type="file"
+                                        [multiple]="false"
+                                        [accept]="'image/jpeg, image/png'"
+                                        (change)="imgPerfilEvt($event)"
+                                        #avatarFileInput
+                                        ><!--(change)="uploadAvatar(avatarFileInput.files)" (change)="detectarCambio($event)"-->
+                                    <label
+                                        class="flex items-center justify-center w-10 h-10 rounded-full cursor-pointer hover:bg-hover"
+                                        for="avatar-file-input"
+                                        matRipple
+                                        >
+                                        <mat-icon
+                                            class="text-white"
+                                            [svgIcon]="'heroicons_outline:camera'"></mat-icon>
+                                    </label>
+                                </div>
+                                <!--
+                                <div>
+                                    <button
+                                        mat-icon-button
+                                        >
+                                        <mat-icon
+                                            class="text-white"
+                                            [svgIcon]="'heroicons_outline:trash'"></mat-icon>
+                                    </button>
+                                </div>
+                                -->
+                            </div>
+                            <!-- Image/Letter -->
+                            <img
+                                *ngIf="imagenRecortada"
+                                #imgPerfil
+                                class="object-cover w-full h-full"
+                                [src]="imagenRecortada.base64"
+                                >
+                            <img
+                                *ngIf="!imagenRecortada && !idEditar"
+                                #imgPerfil
+                                class="object-cover w-full h-full"
+                                >
+
+                            <img
+                                *ngIf="!imagenRecortada && usrAvatar"
+                                #imgPerfil
+                                class="object-cover w-full h-full"
+                                [src]="getAvatar()">
+                        </div>
+                    </div>
+                
+                    <div class="flex" *ngIf="tipo=='usuarios'">
+                        <!-- Title -->
+                        <div class="mt-8 w-full">
+                            <mat-form-field class="fuse-mat-no-subscript w-full">
+                                <mat-label>Rol de usuario</mat-label>
+                                <mat-select matInput [formControlName]="'role'" class="w-full">
+                                    <mat-option *ngFor="let role of dataRoles" [value]="role.id">{{role.nombre}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div>
+
+                    </div>
+                
+                    <div class="grid gap-2 grid-cols-1 md:grid-cols-2 mt-5" *ngIf="perfilForm.value.role || tipo!='usuarios' || idEditar">
+
+                            <mat-form-field class="fuse-mat-no-subscript w-full">
+                                <mat-label>Nombres</mat-label>
+                                <input
+                                    matInput
+                                    [formControlName]="'nombres'"
+                                    [placeholder]="'Job title'">
+                            </mat-form-field>
+
+                        
+                            <mat-form-field class="fuse-mat-no-subscript w-full">
+                                <mat-label>Apellidos</mat-label>
+                                <input
+                                    matInput
+                                    [formControlName]="'apellidos'"
+                                    [placeholder]="'Company'">
+                            </mat-form-field>
+                        
+                    </div>
+
+                    <div class="grid gap-2 grid-cols-1 md:grid-cols-2 mt-5" *ngIf="perfilForm.value.role || tipo!='usuarios' || idEditar">
+                        <!-- Title -->
+                        
+                            <mat-form-field class="fuse-mat-no-subscript w-full">
+                                <mat-label>Tipo documento</mat-label>
+                                <mat-select matInput [formControlName]="'tipoDocumento'" class="w-full">
+                                    <mat-option [value]="'cc'">Cédula</mat-option>
+                                    <mat-option [value]="'nit'">NIT</mat-option>
+                                    <mat-option [value]="'ce'">Cédula extranjera</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                
+                        <!-- Company -->
+                        
+                            <mat-form-field *ngIf="perfilForm.value.role || tipo!='usuarios' || idEditar" class="fuse-mat-no-subscript w-full">
+                                <mat-label>Documento</mat-label>
+                                <mat-icon
+                                matPrefix
+                                class="hidden sm:flex icon-size-5"
+                                [svgIcon]="'heroicons_outline:identification'"></mat-icon>
+                                <input
+                                    matInput
+                                    [formControlName]="'documento'"
+                                    [placeholder]="'Company'">
+                            </mat-form-field>
+                        
+                    </div>
+                
+                    <div class="grid gap-2 grid-cols-1 md:grid-cols-2 mt-5" *ngIf="perfilForm.value.role || tipo!='usuarios' || idEditar">
+                        <!-- Title -->
+                        
+                            <mat-form-field class="fuse-mat-no-subscript w-full">
+                                <mat-label>Fecha</mat-label>
+                                <input
+                                    id="fecha"
+                                    matInput
+                                    [formControlName]="'fecha'"
+                                    [matDatepicker]="picker">
+                        
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        
+                
+                        <!-- Company -->
+                        
+                            <mat-form-field *ngIf="perfilForm.value.role || tipo!='usuarios' || idEditar" class="fuse-mat-no-subscript w-full">
+                                <mat-label>Nombre de usuario</mat-label>
+                                <mat-icon
+                                matPrefix
+                                class="hidden sm:flex icon-size-5"
+                                [svgIcon]="'heroicons_outline:user'"></mat-icon>
+                                <input
+                                    matInput
+                                    [formControlName]="'nickname'"
+                                    [placeholder]="'Company'">
+                            </mat-form-field>
+                        
+                    </div>
+                
+                    <div class="grid gap-2 grid-cols-1 md:grid-cols-2 mt-5" *ngIf="perfilForm.value.role || tipo!='usuarios' || idEditar">
+                        <!-- Title -->
+                        
+                            <mat-form-field *ngIf="perfilForm.value.role == 'conductor' || tipo=='conductores'" class="fuse-mat-no-subscript w-full">
+                                <mat-label>Placa</mat-label>
+                                <mat-icon
+                                    matPrefix
+                                    class="hidden sm:flex icon-size-5"
+                                    [svgIcon]="'heroicons_outline:document-duplicate'"></mat-icon>
+                                <input
+                                    matInput
+                                    [formControlName]="'placa'"
+                                    [placeholder]="'Job title'">
+                            </mat-form-field>
+                        
+
+                        
+                            <mat-form-field *ngIf="perfilForm.value.role == 'cliente' || tipo=='clientes'" class="fuse-mat-no-subscript w-full">
+                                <mat-icon
+                                    matPrefix
+                                    class="hidden sm:flex icon-size-5"
+                                    [svgIcon]="'heroicons_outline:color-swatch'"></mat-icon>
+                                <mat-label>Color</mat-label>
+                                    <mat-select matInput [formControlName]="'color'" class="w-full">
+                                        <mat-option *ngFor="let color of colores" [ngStyle]="{'background-color': color.bg, 'color' : color.text}" [value]="getColorJson(color.bg,color.text)">{{color.bg}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                        
+                
+                        <!-- Company -->
+                        
+                            <mat-form-field *ngIf="perfilForm.value.role || tipo!='usuarios' || idEditar" class="fuse-mat-no-subscript w-full">
+                                <mat-label>Dirección</mat-label>
+                                <mat-icon
+                                    matPrefix
+                                    class="hidden sm:flex icon-size-5"
+                                    [svgIcon]="'heroicons_outline:office-building'"></mat-icon>
+                                <input
+                                    matInput
+                                    [formControlName]="'direccion'"
+                                    [placeholder]="'Company'">
+                            </mat-form-field>
+                        
+                    </div>
+
+                    <div class="grid gap-2 grid-cols-1 md:grid-cols-2 mt-5" *ngIf="perfilForm.value.role || tipo!='usuarios' || idEditar">
+                        <!-- Title -->
+                        
+                            <mat-form-field class="fuse-mat-no-subscript w-full">
+                                <mat-label>Email</mat-label>
+                                <mat-icon
+                                    matPrefix
+                                    class="hidden sm:flex icon-size-5"
+                                    [svgIcon]="'heroicons_outline:mail'"></mat-icon>
+                                <input
+                                    matInput
+                                    [formControlName]="'email'"
+                                    [placeholder]="'Email address'">
+                            </mat-form-field>
+                        
+                
+                        <!-- Company -->
+                        
+                            <mat-form-field *ngIf="perfilForm.value.role || tipo!='usuarios' || idEditar" class="fuse-mat-no-subscript w-full">
+                                <mat-label>Teléfono</mat-label>
+                                <mat-icon
+                                    matPrefix
+                                    class="hidden sm:flex icon-size-5"
+                                    [svgIcon]="'heroicons_outline:phone'"></mat-icon>
+                                <input
+                                    matInput
+                                    [formControlName]="'telefono'"
+                                    [placeholder]="'Company'">
+                            </mat-form-field>
+                        
+                    </div>
+                
+                    <div class="grid gap-2 grid-cols-1 md:grid-cols-2 mt-5" *ngIf="perfilForm.value.role && !idEditar">
+                        <!-- Title -->
+                        
+                            <mat-form-field class="fuse-mat-no-subscript w-full">
+                                <mat-label>Contraseña:)</mat-label>
+                                <mat-icon
+                                    matPrefix
+                                    class="hidden sm:flex icon-size-5"
+                                    [svgIcon]="'heroicons_outline:key'"></mat-icon>
+                                <input
+                                    matInput
+                                    [formControlName]="'password_1'"
+                                    [placeholder]="'Email address'">
+                            </mat-form-field>
+                        
+                
+                        <!-- Company -->
+                        
+                            <mat-form-field class="fuse-mat-no-subscript w-full">
+                                <mat-label>Repita la contraseña</mat-label>
+                                <mat-icon
+                                    matPrefix
+                                    class="hidden sm:flex icon-size-5"
+                                    [svgIcon]="'heroicons_outline:key'"></mat-icon>
+                                <input
+                                    matInput
+                                    [formControlName]="'password_2'"
+                                    [placeholder]="'Company'">
+                            </mat-form-field>
+                        
+                    </div>
+                
+                    <div class="mt-5" *ngIf="idEditar">
+                        <button (click)="editarPasswordModal()" class="bg-[#383838] text-white" mat-button>Editar
+                            <mat-icon
+                            matPrefix
+                            class="icon-size-5 text-white"
+                            [svgIcon]="'heroicons_outline:key'"></mat-icon>
+                        </button>
+                    </div>
+                
+                            <!-- Actions -->
+                            <div class="flex items-center mt-10 py-4 pr-4 pl-1 sm:pr-12 sm:pl-7 border-t" *ngIf="perfilForm.value.role || tipo!='usuarios' || idEditar">
+                                <!-- Cancel -->
+                                <button
+                                    class="ml-auto"
+                                    mat-button>
+                                    Cancel
+                                </button>
+                                <!-- Save -->
+                                <button
+                                    *ngIf="!idEditar"
+                                    (click)="guardarUsuario()"
+                                    class="ml-2"
+                                    mat-flat-button
+                                    [color]="'primary'"
+                                    [disabled]="perfilForm.invalid">
+                                    Guardar
+                                </button>
+
+                                <button
+                                    *ngIf="idEditar"
+                                    (click)="editarUsuario()"
+                                    class="ml-2"
+                                    mat-flat-button
+                                    [color]="'primary'"
+                                    [disabled]="perfilForm.invalid">
+                                    Editar
+                                </button>
+                            </div>
+                
+                </form>
+
+    </div>
+</div>

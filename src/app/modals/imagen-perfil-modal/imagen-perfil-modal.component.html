@@ -1,0 +1,35 @@
+<div class="flex flex-col w-full items-center justify-center">
+    <div class="relative flex items-center justify-center overflow-hidden ring-4 ring-bg-card">
+
+        <image-cropper
+        [imageChangedEvent]="evento"
+        [aspectRatio]="4/4"
+        [maintainAspectRatio]="true"
+        format="jpg"
+        (imageCropped)="imageCropped($event)"
+        ></image-cropper>
+
+    </div>
+
+
+    <div class="flex items-center mt-5 py-4 pr-4">
+
+        <button
+            mat-flat-button
+            [color]="'primary'"
+            >
+            Cancelar
+        </button>
+
+        <button
+            (click)="cerrarModal()"
+            class="ml-2"
+            mat-flat-button
+            [color]="'primary'"
+            >
+            Guardar
+        </button>
+        
+    </div>
+
+</div>

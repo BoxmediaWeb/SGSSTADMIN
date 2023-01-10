@@ -1,0 +1,54 @@
+<div class="flex items-center justify-between">
+    <div class="text-2xl font-semibold">Inputs</div>
+    <div><button (click)="agregarCambio()" [color]="'primary'" mat-flat-button>Nuevo<mat-icon class="icon-size-5 ml-2" [svgIcon]="'heroicons_outline:plus'"></mat-icon></button></div>
+</div>
+<section class="mt-10">
+    <div class="flex justify-between">
+        <span class="font-bold">Nombre</span>
+        <span class="font-bold mr-5">Tipo</span>
+    </div>
+    <div class="overflow-y-scroll max-h-48">
+        <div *ngFor="let entrada of entradas" class="flex justify-between mt-5">
+            <div class="flex items-center">
+                <mat-icon class="icon-size-5 mr-3" [svgIcon]="'heroicons_outline:clipboard-copy'"></mat-icon>
+                {{entrada.nombre}} -
+
+                <span>{{entrada.tipo}}</span>
+            </div>
+
+            <span><mat-icon class="icon-size-5 mr-3" [svgIcon]="'heroicons_outline:trash'"></mat-icon></span>
+        </div>
+    </div>
+    <div *ngIf="agregar">
+        <form [formGroup]="entradaForm" class="w-full mt-10">
+
+                    <mat-form-field class="fuse-mat-no-subscript w-full">
+                        <mat-label>Role</mat-label>
+                        <mat-select matInput [formControlName]="'tipo'" class="w-full">
+                            <mat-option *ngFor="let tipo of tipos" [value]="tipo.id">{{tipo.nombre}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="fuse-mat-no-subscript w-full">
+                        <mat-label>Nombre</mat-label>
+                        <input
+                            matInput
+                            [formControlName]="'nombre'"
+                            [placeholder]="'Nombre'">
+                    </mat-form-field>
+
+                    <div class="mt-10">
+
+                        <button
+                            (click)="setEvento()"
+                            class="ml-2"
+                            mat-flat-button
+                            [color]="'primary'"
+                            [disabled]="entradaForm.invalid">
+                            Guardar
+                        </button>
+                    </div>
+
+        </form>
+    </div>
+</section>

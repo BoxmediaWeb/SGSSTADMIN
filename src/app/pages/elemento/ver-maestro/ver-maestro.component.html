@@ -1,0 +1,83 @@
+<div *ngIf="!htmlContent && loadedDocument && !idDetalleDocumento" class="w-full h-full flex justify-center align-center">
+    <p class="text-3xl font-bold flex justify-center align-center">
+        <mat-icon
+        class="icon-size-10"
+        [svgIcon]="'heroicons_outline:shield-exclamation'"></mat-icon>
+        <span class="opacity-50">¡Maestro no creado!</span>
+    </p>
+</div>
+
+<div class="mb-10 w-full px-5" *ngIf="htmlContent && !idDetalleDocumento">
+    
+    <div>
+        <form
+            class="mt-8"
+            [formGroup]="detalleDocumentoForm"
+            crossOrigin="Anonymous">
+    
+            <div class="grid gap-2 grid-cols-1 sm:grid-cols-2">
+                <mat-form-field>
+                    <mat-label>Fecha</mat-label>
+                    <input
+                        id="fecha"
+                        matInput
+                        [formControlName]="'fecha'"
+                        [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>    
+                </mat-form-field>
+    
+                <mat-form-field>
+                    <mat-label>Versión</mat-label>
+                    <mat-select id="estado" [formControlName]="'version'">
+                        <mat-option value=1>1.0</mat-option>
+                        <mat-option value=2>2.0</mat-option>
+                        <mat-option value=3>3.0</mat-option>
+                        <mat-option value=4>4.0</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+    
+    
+            <mat-form-field class="w-full">
+                <mat-label>Comentario</mat-label>
+                <textarea matInput [formControlName]="'comentario'"  id="comentario" cols="30" rows="5"></textarea>
+            </mat-form-field>
+        </form>
+    </div>
+    <div>
+        <button (click)="guardarDetalleDocumento()" class="bg-[#0D47A1] text-white my-2" mat-button>Guardar</button>
+    </div>
+
+    <form
+    [formGroup]="detalleDocumentoForm" crossOrigin="Anonymous">
+        <angular-editor [(ngModel)]="htmlContent" height="1000" formControlName="texto" [config]="editorConfig"></angular-editor>
+    </form>
+</div>
+
+<section *ngIf="idDetalleDocumento!=null" class="p-5">
+
+    <div>
+        <button (click)="print()" class="bg-[#B71C1C] text-white" mat-button>
+            PDF
+            <mat-icon class="icon-size-5 text-white ml-1" [svgIcon]="'heroicons_outline:document-text'"></mat-icon>
+        </button>
+
+        <button (click)="editarDetalleDocumento()" class="bg-[#0D47A1] text-white ml-2" mat-button>
+            Editar
+            <mat-icon class="icon-size-5 text-white ml-1" [svgIcon]="'heroicons_outline:save'"></mat-icon>
+        </button>
+    </div>
+
+    <div #content class="mt-5 w-full pb-40">
+        <form
+        [formGroup]="detalleDocumentoForm" crossOrigin="Anonymous">
+            <angular-editor [(ngModel)]="htmlContent" height="1000" formControlName="texto" [config]="editorConfig"></angular-editor>
+        </form>
+    </div>
+
+
+    <!--<div #content class="mt-20 w-full pb-40" id="imprimible" [innerHTML]="htmlContent">
+        {{htmlContent}}
+    </div>-->
+</section>

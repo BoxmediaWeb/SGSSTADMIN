@@ -1,0 +1,32 @@
+<section>
+
+    <!-- Header -->
+    <div class="flex items-center justify-between">
+        <div class="text-2xl font-semibold">Nuevo Rol</div>
+    </div>
+
+    <form
+    class="mt-8"
+    [formGroup]="eventoForm" crossOrigin="Anonymous">
+
+        <mat-form-field class="w-full" appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input
+                id="fecha"
+                type="url"
+                matInput
+                [formControlName]="'nombre'"
+                >
+        </mat-form-field>
+
+        <mat-form-field class="w-full" appearance="outline">
+            <mat-label>Descripción</mat-label>
+            <textarea matInput [formControlName]="'descripcion'"  id="comentario" cols="30" rows="5"></textarea>
+        </mat-form-field>
+    </form>
+
+    <!--(click)="guardar()"-->
+    <div class="flex justify-end mt-2">
+        <button class="bg-[#00b540] text-white" (click)="guardar()" mat-button>Guardar</button>  
+    </div>
+</section>

@@ -1,0 +1,346 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <div class="bg-card">
+        <div class="flex flex-col w-full max-w-screen-xl mx-auto px-6 sm:px-8">
+            <div class="flex flex-col sm:flex-row flex-auto sm:items-center min-w-0 my-8 sm:my-12">
+
+                <div class="flex flex-auto items-center min-w-0">
+                    <div *ngIf="user.avatar" class="flex-0 w-16 h-16 rounded-full overflow-hidden">
+                        <img
+                            class="w-full h-full object-cover"
+                            [src]="getAvatar(user.avatar)">
+                    </div>
+
+                    <div *ngIf="!user.avatar" class="flex-0">
+                        <mat-icon
+                            class="icon-size-22"
+                            [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>                        
+                    </div>
+
+
+                    <div class="flex flex-col min-w-0 ml-4">
+                        <ng-container>
+                            <div class="text-2xl md:text-5xl font-semibold tracking-tight leading-7 md:leading-snug truncate">Bienvenido, {{user.name}}!</div>
+                        </ng-container>
+                        <div class="flex items-center">
+                            <mat-icon
+                                class="icon-size-5"
+                                [svgIcon]="'heroicons_solid:office-building'"></mat-icon>
+                            <div class="ml-1.5 leading-6 truncate text-secondary">Box Media S.A.S</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center mt-6 sm:mt-0 sm:ml-2 space-x-3">
+                    <button
+                        class="fuse-mat-button-rounded bg-accent-700"
+                        mat-flat-button
+                        [color]="'accent'">
+                        <mat-icon
+                            class="icon-size-5"
+                            [svgIcon]="'heroicons_solid:mail'"></mat-icon>
+                        <span class="ml-2">Mensajes</span>
+                    </button>
+                    <button
+                        class="fuse-mat-button-rounded"
+                        mat-flat-button
+                        [color]="'primary'">
+                        <mat-icon
+                            class="icon-size-5"
+                            [svgIcon]="'heroicons_solid:cog'"></mat-icon>
+                        <span class="ml-2">Configuraciones</span>
+                    </button>
+                </div>
+            </div>
+
+            <div
+                class="relative flex self-start pt-2 pb-1 pl-5 pr-4 cursor-pointer overflow-hidden rounded-t-xl border border-b-0 bg-default"
+                matRipple>
+                <div class="flex items-center">
+                    <div class="flex items-center justify-center pl-2 mr-1">
+                        <mat-icon
+                            class="icon-size-5"
+                            [svgIcon]="'heroicons_outline:identification'"></mat-icon>
+                    </div>
+                    <div class="overflow-hidden">
+                        <div class="font-medium leading-6 truncate">Administrador</div>
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="flex-auto border-t -mt-px pt-4 sm:pt-6">
+        <div class="w-full max-w-screen-xl mx-auto">
+
+            <mat-tab-group
+            class="sm:px-2"
+            [animationDuration]="'0'">
+        
+
+            <mat-tab label="Nóminas">
+                <ng-template matTabContent>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full min-w-0">
+
+
+
+                            <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                                <div class="flex items-start justify-between">
+                                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Avance</div>
+                                    <div class="ml-2 -mt-2 -mr-3">
+                                        <button
+                                            mat-icon-button
+                                            [matMenuTriggerFor]="summaryMenu">
+                                            <mat-icon
+                                                class="icon-size-5"
+                                                [svgIcon]="'heroicons_solid:dots-vertical'"></mat-icon>
+                                        </button>
+                                        <mat-menu #summaryMenu="matMenu">
+                                            <button mat-menu-item>Ayer</button>
+                                            <button mat-menu-item>Hace 2 dias</button>
+                                            <button mat-menu-item>Hace 3 dias</button>
+                                        </mat-menu>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-center mt-2">
+                                    <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-blue-500">30%</div>
+                                    <div class="text-lg font-medium text-blue-600 dark:text-blue-500">Completado</div>
+                                    <div class="flex items-baseline justify-center w-full mt-5 text-secondary">
+                                        <div class="text-md font-medium truncate">General</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                                <div class="flex items-start justify-between">
+                                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Incapacidades</div>
+                                    <div class="ml-2 -mt-2 -mr-3">
+                                        <button
+                                            mat-icon-button
+                                            [matMenuTriggerFor]="overdueMenu">
+                                            <mat-icon
+                                                class="icon-size-5"
+                                                [svgIcon]="'heroicons_solid:dots-vertical'"></mat-icon>
+                                        </button>
+                                        <mat-menu #overdueMenu="matMenu">
+                                            <button mat-menu-item>Ayer</button>
+                                            <button mat-menu-item>Hace 2 dias</button>
+                                            <button mat-menu-item>Hace 3 dias</button>
+                                        </mat-menu>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-center mt-2">
+                                    <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-red-500">2</div>
+                                    <div class="text-lg font-medium text-red-600 dark:text-red-500">Personal ausente</div>
+                                    <div class="flex items-baseline justify-center w-full mt-5 text-secondary">
+                                        <div class="text-md font-medium truncate">Semanal</div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                                <div class="flex items-start justify-between">
+                                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Presupuesto</div>
+                                    <div class="ml-2 -mt-2 -mr-3">
+                                        <button
+                                            mat-icon-button
+                                            [matMenuTriggerFor]="issuesMenu">
+                                            <mat-icon
+                                                class="icon-size-5"
+                                                [svgIcon]="'heroicons_solid:dots-vertical'"></mat-icon>
+                                        </button>
+                                        <mat-menu #issuesMenu="matMenu">
+                                            <button mat-menu-item>Ayer</button>
+                                            <button mat-menu-item>Hace 2 dias</button>
+                                            <button mat-menu-item>Hace 3 dias</button>
+                                        </mat-menu>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-center mt-2">
+                                    <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-amber-500">35%</div>
+                                    <div class="text-lg font-medium text-amber-600 dark:text-amber-500">Ejecutado</div>
+                                    <div class="flex items-baseline justify-center w-full mt-5 text-secondary">
+                                        <div class="text-md font-medium truncate">Anual</div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                                <div class="flex items-start justify-between">
+                                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Personal</div>
+                                    <div class="ml-2 -mt-2 -mr-3">
+                                        <button
+                                            mat-icon-button
+                                            [matMenuTriggerFor]="featuresMenu">
+                                            <mat-icon
+                                                class="icon-size-5"
+                                                [svgIcon]="'heroicons_solid:dots-vertical'"></mat-icon>
+                                        </button>
+                                        <mat-menu #featuresMenu="matMenu">
+                                            <button mat-menu-item>Ayer</button>
+                                            <button mat-menu-item>Hace 2 dias</button>
+                                            <button mat-menu-item>Hace 3 dias</button>
+                                        </mat-menu>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-center mt-2">
+                                    <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-green-500">15</div>
+                                    <div class="text-lg font-medium text-green-600 dark:text-green-500">Trabajadores</div>
+                                    <div class="flex items-baseline justify-center w-full mt-5 text-secondary">
+                                        <div class="text-md font-medium truncate">General</div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                    </div>
+
+                   
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full min-w-0 pt-4">
+
+
+                    <div class="sm:col-span-2 md:col-span-4 lg:col-span-2 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                        <div class="flex flex-col sm:flex-row items-start justify-between">
+                            <div class="text-lg font-medium tracking-tight leading-6 truncate">Calendario</div>
+                            <button
+                            (click)="eventoModal()"
+                            class="fuse-mat-button-rounded"
+                            mat-flat-button
+                            [color]="'primary'">
+                                <mat-icon
+                                    class="icon-size-5"
+                                    [svgIcon]="'heroicons_solid:plus-circle'"></mat-icon>
+                                <span class="ml-2">Evento</span>
+                            </button>
+                        </div>
+                        <div class="flex flex-col mt-2 divide-y">
+                            <ng-container *ngFor="let evento of dataEventos">
+                                <div class="flex flex-row items-center justify-between py-4 px-0.5">
+                                    <div class="flex flex-col">
+                                        <div class="font-medium" style="display: flex;">
+                                            {{evento?evento.nombre:'---'}}</div>
+                                        <div class="flex flex-col sm:flex-row sm:items-center -ml-0.5 mt-2 sm:mt-1 space-y-1 sm:space-y-0 sm:space-x-3">
+                                            <ng-container >
+                                                <div class="flex items-center">
+                                                    <mat-icon
+                                                        class="icon-size-5 text-hint"
+                                                        [svgIcon]="'heroicons_solid:calendar'"></mat-icon>
+                                                    <div class="ml-1.5 text-md text-secondary"><strong>Fecha a realizar: </strong>{{evento?evento.fecha:'---'}}</div>
+                                                </div>
+                                            </ng-container>
+                                            <ng-container >
+                                                <div class="flex items-center">
+                                                    <div class="ml-1.5 text-md text-secondary">
+                                                    
+                                                        <span
+                                                        class="inline-flex items-center font-bold text-xs px-2.5 py-0.5 rounded-full tracking-wide uppercase"
+                                                        [ngClass]="{'bg-red-200 text-red-800 dark:bg-red-600 dark:text-red-50': evento.estado == 3,
+                                                                    'bg-green-200 text-green-800 dark:bg-green-600 dark:text-green-50': evento.estado == 4,
+                                                                    'bg-orange-200 text-orange-800 dark:bg-orange-600 dark:text-orange-50': evento.estado == 1,
+                                                                    'bg-blue-200 text-blue-800 dark:bg-blue-600 dark:text-blue-50': evento.estado == 2
+                                                                }">
+                                                            <span class="leading-relaxed whitespace-nowrap">
+                                                                {{evento.estado == 1? 'Por confirmar' : evento.estado == 2? 'Agendada': evento.estado == 3? 'Cancelada': evento.estado == 4?'Finalizada':''}}
+                                                            </span>
+                                                        </span>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+
+                                        </div>
+                                    </div>
+                                    <button mat-icon-button
+                                    (click)="irCalendario()">
+                                        <mat-icon [svgIcon]="'heroicons_solid:chevron-right'"></mat-icon>
+                                    </button>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                    
+
+                    <div class="sm:col-span-2 md:col-span-4 lg:col-span-2 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                        <div class="flex flex-col sm:flex-row items-start justify-between">
+                            <div class="text-lg font-medium tracking-tight leading-6 truncate">útimas subidas</div>
+                            <div class="mt-3 sm:mt-0 sm:ml-2">
+
+                            </div>
+                        </div>
+                        <div class="flex flex-col mt-2 divide-y">
+                            <ng-container *ngFor="let ultimos of dataDetalleDocumentos">
+                                <div class="flex flex-row items-center justify-between py-4 px-0.5">
+                                    <div class="flex flex-col">
+                                        <div class="font-medium" style="display: flex;">
+                                            <mat-icon
+                                            class="icon-size-5 text-hint"
+                                            [svgIcon]="'heroicons_outline:document-add'"></mat-icon>
+                                            {{ultimos.MaestroDocumento?.nombreCorto}}</div>
+                                        <div class="flex flex-col sm:flex-row sm:items-center -ml-0.5 mt-2 sm:mt-1 space-y-1 sm:space-y-0 sm:space-x-3">
+                                            <ng-container >
+                                                <div class="flex items-center">
+                                                    <mat-icon
+                                                        class="icon-size-5 text-hint"
+                                                        [svgIcon]="'heroicons_solid:calendar'"></mat-icon>
+                                                    <div class="ml-1.5 text-md text-secondary">{{ultimos.fecha}}</div>
+                                                </div>
+                                            </ng-container>
+                                            <ng-container >
+                                                <div class="flex items-center">
+                                                    <mat-icon
+                                                        class="icon-size-5 text-hint"
+                                                        [svgIcon]="'heroicons_solid:clipboard-list'"></mat-icon>
+                                                    <div class="ml-1.5 text-md text-secondary">{{ultimos?.MaestroDocumento?.ubicacion}}</div>
+                                                </div>
+                                            </ng-container>
+                                            <ng-container >
+                                                <div class="flex items-center">
+                                                    <mat-icon
+                                                        class="icon-size-5 text-hint"
+                                                        [svgIcon]="'heroicons_solid:user'"></mat-icon>
+                                                    <div class="ml-1.5 text-md text-secondary">{{ultimos?.usuario}}</div>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <button mat-icon-button
+                                    (click)="irDetalleDocumento(ultimos?.MaestroDocumento?.ubicacion)">
+                                        <mat-icon [svgIcon]="'heroicons_solid:chevron-right'"></mat-icon>
+                                    </button>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    </div>
+
+                </ng-template>
+            </mat-tab>
+        
+
+            <mat-tab label="Contabilidad">
+                Budget
+            </mat-tab>
+
+            <mat-tab label="Equipo">
+                Otros
+            </mat-tab>
+            
+        
+        </mat-tab-group>
+        </div>
+    </div>
+
+</div>
+                
+                
+                
+                
+                
+

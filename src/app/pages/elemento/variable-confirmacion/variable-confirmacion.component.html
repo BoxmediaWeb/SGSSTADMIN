@@ -1,0 +1,37 @@
+<section>
+    <div class="flex items-center justify-between">
+        <div class="text-2xl font-semibold">Variables creadas:</div>
+    </div>
+
+    <div>
+        <p class="text-sm">Estas son las variables que has registrado en el documento ¿Desea guardar?</p>
+    </div>
+
+    <ul>
+        <li *ngFor="let variableDocumento of variablesDocumentos">{{variableDocumento}}</li>
+    </ul>
+
+
+    
+    <div class="flex mt-5 py-4 pr-4">
+
+        <button
+            (click)="cerrarModal()"
+            mat-flat-button
+            [color]="'primary'"
+            >
+            Cancelar
+        </button>
+
+        <button
+            (click)="cerrarModalGuardar()"
+            class="ml-2"
+            mat-flat-button
+            [color]="'primary'"
+            >
+            Guardar
+        </button>
+        
+    </div>
+
+</section>

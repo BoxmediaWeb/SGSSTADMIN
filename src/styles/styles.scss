@@ -1,0 +1,16 @@
+/* ----------------------------------------------------------------------------------------------------- */
+/*  @ Import/write your custom styles here.
+/*  @ Styles from this file will override 'vendors.scss' and Fuse's base styles.
+/* ----------------------------------------------------------------------------------------------------- */
+
+
+table{
+    width: 100%;
+    margin: 10px;
+}
+
+angular-editor-toolbar button i {
+    font-family: FontAwesome !important;
+    color: #474d6d !important;
+    
+    }

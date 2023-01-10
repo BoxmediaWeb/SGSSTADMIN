@@ -1,0 +1,96 @@
+<div class="flex flex-col flex-auto">
+    <!-- Header -->
+    <div class="flex items-center justify-between">
+        <div class="text-2xl font-semibold">Nuevo evento</div>
+    </div>
+
+    <form
+    class="mt-8"
+    [formGroup]="eventoForm" crossOrigin="Anonymous">
+
+        <mat-form-field class="w-full">
+            <mat-label>Fecha</mat-label>
+            <input
+                id="fecha"
+                matInput
+                [formControlName]="'fecha'"
+                [matDatepicker]="picker">
+
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Nombre</mat-label>
+            <input
+                id="fecha"
+                type="url"
+                matInput
+                [formControlName]="'nombre'"
+                >
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Hora inicio</mat-label>
+            <input
+                id="fecha"
+                type="time"
+                matInput
+                [formControlName]="'horaInicio'"
+                >
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Hora fin</mat-label>
+            <input
+                id="fecha"
+                type="time"
+                matInput
+                [formControlName]="'horaFin'"
+                >
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Observaciones</mat-label>
+            <textarea matInput [formControlName]="'observaciones'"  id="comentario" cols="30" rows="5"></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Estado</mat-label>
+            <mat-select id="estado" [formControlName]="'estado'">
+                <mat-option [value]="1">Por confirmar</mat-option>
+                <mat-option [value]="2">Agendada</mat-option>
+                <mat-option [value]="3">Cancelada</mat-option>
+                <mat-option [value]="4">Finalizada</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+    </form>
+
+    <div class="flex items-center mt-10 py-4 pr-4 sm:pr-12">
+        <button
+            (click)="setEvento()"
+            mat-flat-button
+            [color]="'primary'"
+            [disabled]="eventoForm.invalid"
+            >
+            Guardar
+        </button>
+
+        <button
+            *ngIf="data.evento"
+            (click)="modalConfirmacionBorrar()"
+            class="ml-1"
+            mat-flat-button
+            [color]="'warn'"
+            [disabled]="eventoForm.invalid"
+            >
+            <mat-icon
+            class="text-current px-1 py-1"
+            [svgIcon]="'heroicons_solid:trash'"></mat-icon>
+        Borrar
+        </button>
+    </div>
+
+
+</div>

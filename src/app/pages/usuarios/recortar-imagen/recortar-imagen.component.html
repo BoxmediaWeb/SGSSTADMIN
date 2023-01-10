@@ -1,0 +1,26 @@
+<div class="flex mb-5">
+    <button mat-button class="bg-[#0277BD] text-white" (click)="cortarImagen()"> <mat-icon
+        class="text-white mr-2"
+        [svgIcon]="'heroicons_outline:scissors'"></mat-icon> Recortar</button>
+    <button mat-button class="ml-2">Cancelar</button>
+</div>
+
+<div class="w-[500px] h-[500px] bg-[#383838]">
+    <image-cropper
+    [ngClass]="originalHeight > originalWidth?'h-full w-auto':'w-full h-auto'"
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="1 / 1"
+    format="png"
+    [resizeToWidth]="300"
+    [resizeToHeight]="300"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded($event)"
+    (cropperReady)="cropperReady()"
+    (loadImageFailed)="loadImageFailed()"
+    ></image-cropper>
+</div>
+
+<!--
+<img [src]="croppedImage" />
+-->
