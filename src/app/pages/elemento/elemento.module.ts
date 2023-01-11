@@ -38,6 +38,7 @@ import { VerMaestroComponent } from './ver-maestro/ver-maestro.component';
 import { VariableConfirmacionComponent } from './variable-confirmacion/variable-confirmacion.component';
 import { VistaDocumentoComponent } from './vista-documento/vista-documento.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { PdfDocumentoComponent } from './pdf-documento/pdf-documento.component';
 
 @NgModule({
     declarations: [
@@ -54,7 +55,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
           InputsModalComponent,
           VerMaestroComponent,
           VariableConfirmacionComponent,
-          VistaDocumentoComponent
+          VistaDocumentoComponent,
+          PdfDocumentoComponent
   ],
     imports     : [
         RouterModule.forChild(ElementoRoutes),

@@ -1,12 +1,12 @@
 <!--Vista vacia-->
-<div *ngIf="!dataMaestroGeneral" class="flex flex-col flex-auto w-full">
+<div *ngIf="!dataMaestroGeneral" class="flex flex-col flex-auto w-full print:hidden">
     <div class="flex-auto p-6 sm:p-10">
         <div class="h-400 min-h-400 max-h-400 border-2 border-dashed border-gray-300 rounded-2xl"></div>
     </div>
 </div>
 
 <div *ngIf="dataMaestroGeneral" class="flex flex-col flex-auto w-full">
-    <div class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
+    <div class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent print:hidden">
         <div class="flex-1 min-w-0">
             <div class="flex flex-wrap items-center font-medium">
                 <div>

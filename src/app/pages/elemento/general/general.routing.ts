@@ -1,6 +1,7 @@
 import { Route } from '@angular/router';
 import { GenerarMaestroComponent } from '../generar-maestro/generar-maestro.component';
 import { ListaComponent } from '../lista/lista.component';
+import { PdfDocumentoComponent } from '../pdf-documento/pdf-documento.component';
 import { VerMaestroComponent } from '../ver-maestro/ver-maestro.component';
 import { VistaDocumentoComponent } from '../vista-documento/vista-documento.component';
 import { GeneralComponent } from './general.component';
@@ -29,6 +30,10 @@ export const GeneralRoutes: Route[] = [
             {
                 path     : 'detalle-documento/:idDetalleDocumento',
                 component: VerMaestroComponent,
+            },
+            {
+                path     : 'pdf-documento/:idDetalleDocumento',
+                component: PdfDocumentoComponent,
             },
             {
                 path     : 'editar-detalle-documento/:idDetalleDocumento',

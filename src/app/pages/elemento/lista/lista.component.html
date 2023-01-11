@@ -184,8 +184,6 @@
                                     *matCellDef="let budget">
 
                                     <span style="display: flex;">
-
-
                                         <button
                                         *ngIf="archivo.tipoDocumento!='Matriz'"
                                         (click)="irDocumento(budget)"
@@ -199,7 +197,7 @@
 
                                         <button
                                         *ngIf="archivo.tipoDocumento!='Matriz'"
-                                        (click)="irDocumento(budget)"
+                                        (click)="irDocumentoPDF(budget)"
                                         class="min-w-10 min-h-7 h-7 px-2 leading-6 ml-2"
                                         mat-stroked-button>
                                         <mat-icon

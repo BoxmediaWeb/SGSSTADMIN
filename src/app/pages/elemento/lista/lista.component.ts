@@ -40,6 +40,10 @@ export class ListaComponent implements OnInit {
   irDocumento(detalleDocumento){
     this._router.navigate([`/estandar/${this.estandarActual}/${this.ubicacionActual}_${this.indice}/detalle-documento/${detalleDocumento.id}`]);
   }
+  
+  irDocumentoPDF(detalleDocumento){
+    this._router.navigate([`/estandar/${this.estandarActual}/${this.ubicacionActual}_${this.indice}/pdf-documento/${detalleDocumento.id}`]);
+  }
 
   irVistaDocumento(){
     this._router.navigate([`/estandar/${this.estandarActual}/${this.ubicacionActual}_${this.indice}/vista-documento`]);
