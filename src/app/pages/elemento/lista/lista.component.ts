@@ -108,6 +108,30 @@ export class ListaComponent implements OnInit {
     this.dataListaDocumentos;
   }
 
+  
+  mutacionDetalleDocumentoModal(){
+    const dialogRef = this._dialog.open(MutacionDetalleDocumentoModalComponent, {
+      minWidth: '500px',
+      data:{
+        maestro:this.ubicacionActual,
+        indice:this.indice
+      }
+    });
+  
+    dialogRef.afterClosed().subscribe((result: any) => {
+      /*this.detalleDocumentoSeleccionado=this.detalleDocumentoSeleccionado;
+      this.linkDescarga=this.detalleDocumentoSeleccionado.ubicacion;
+      if(result.guardado==true){
+        this.guardadoModal();
+      }
+
+      this.getDetallesDocumento();
+      this.dataListaDocumentos;
+      this.selectMaestro(this.detalleDocumentoSeleccionado.id);*/
+  });
+
+  }
+
   constructor(
     private route: ActivatedRoute,
     private _router:Router,

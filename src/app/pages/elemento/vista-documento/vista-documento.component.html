@@ -3,7 +3,7 @@
     <mat-drawer-container class="flex flex-col flex-auto -mt-16">
 
         <mat-drawer
-            class="w-100 dark:bg-gray-900"
+            class="w-60 dark:bg-gray-900"
             [autoFocus]="false"
             [mode]="drawerMode"
             [opened]="drawerOpened"
@@ -22,18 +22,16 @@
                 </div>
 
                 
-                <div class="aspect-w-9 aspect-h-6 mt-8">
+                <div class="aspect-w-9 aspect-h-6">
                     <div class="flex items-center justify-center border rounded-lg bg-gray-50 dark:bg-card">
                         <ng-container >
                             <mat-icon
-                                class="icon-size-14 text-hint"
+                                class="icon-size-10 text-hint"
                                 [svgIcon]="'iconsmind:file'"></mat-icon>
                         </ng-container>
                     </div>
                 </div>
                 
-                
-            
             <ng-container *ngIf="detalleDocumentoSeleccionado!=null && detalleDocumentoSeleccionado!=undefined">
                 <div class="flex flex-col items-start mt-8" *ngIf="!detalleDocumentoSeleccionado.ubicacion">
                     <div class="text-xl font-medium">No subido</div>
@@ -45,7 +43,7 @@
                 </div>
 
                 <div class="flex flex-col items-start mt-8" *ngIf="detalleDocumentoSeleccionado.ubicacion">
-                    <div class="text-xl font-medium">{{detalleDocumentoSeleccionado.MaestroDocumento.nombreCorto?detalleDocumentoSeleccionado.maestroDocumento.nombreCorto:''}}</div>
+                    <div class="text-xl font-medium">{{detalleDocumentoSeleccionado.MaestroDocumento.nombreCorto}}</div>
 
                     <div
                         class="mt-1 px-1.5 rounded text-sm font-semibold leading-5 text-white bg-amber-600">
@@ -56,9 +54,9 @@
 
                 <ng-container *ngIf="detalleDocumentoSeleccionado!=null && detalleDocumentoSeleccionado!=undefined">
                     
-                    <div class="text-lg font-medium mt-8" *ngIf="detalleDocumentoSeleccionado.ubicacion">Información</div>
-                    <div class="flex flex-col mt-4 border-t border-b divide-y font-medium">
-                        <div class="flex items-center justify-between py-3" *ngIf="detalleDocumentoSeleccionado.ubicacion">
+                    <div class="text-lg font-medium mt-2" *ngIf="detalleDocumentoSeleccionado.ubicacion">Información</div>
+                    <div class="pt-4 border-t font-medium">
+                        <div class="flex flex-col justify-start text-start y-3" *ngIf="detalleDocumentoSeleccionado.ubicacion">
                             <div class="text-secondary" >Última subida</div>
                             <div>{{detalleDocumentoSeleccionado?detalleDocumentoSeleccionado.fecha:''}}</div>
                         </div>
@@ -66,15 +64,13 @@
                             <div class="text-secondary">Subido por</div>
                             <div>{{detalleDocumentoSeleccionado?detalleDocumentoSeleccionado.usuario:''}}</div>
                         </div>
-
                     </div>
 
-                    
-                    <div class="flex items-center justify-between mt-8" *ngIf="detalleDocumentoSeleccionado.ubicacion">
+                    <div class="flex items-center justify-between mt-2" *ngIf="detalleDocumentoSeleccionado.ubicacion">
                         <div class="text-lg font-medium">Descripción</div>
                     </div>
-                    <div class="flex mt-2 border-t" *ngIf="detalleDocumentoSeleccionado.ubicacion">
-                        <div class="py-3">
+                    <div class="flex" *ngIf="detalleDocumentoSeleccionado.ubicacion">
+                        <div>
                             <ng-container>
                                 <div>{{detalleDocumentoSeleccionado.comentario?detalleDocumentoSeleccionado.comentario:''}}</div>
                             </ng-container>
@@ -82,32 +78,34 @@
                     </div>
                 </ng-container>
 
-
                 
-                <div class="grid grid-cols-3 gap-4 w-full mt-8">
+                <div class="flex justify-between w-full mt-8">
                     <button
+                        *ngIf="!detalleDocumentoSeleccionado?.ubicacion"
                         (click)="mutacionDetalleDocumentoModal()"
-                        class="flex-auto"
                         mat-flat-button
                         [color]="'primary'">
                         Subir
+                        <mat-icon
+                        class="mr-1"
+                        [svgIcon]="'heroicons_outline:upload'"></mat-icon>
                     </button>
                     <a
+                        *ngIf="detalleDocumentoSeleccionado?.ubicacion"
                         (click)="downloadDocumento(linkDescarga)"
-                        *ngIf="linkDescarga"
                         download
-                        class="flex-auto"
                         mat-flat-button
                         [color]="'primary'">
-                        Descargar
+                        <mat-icon
+                        [svgIcon]="'heroicons_outline:download'"></mat-icon>
                     </a>
                     <button
-                        (click)="borrarDetalleDocumento()"
-                        class="flex-auto"
+                        *ngIf="detalleDocumentoSeleccionado?.ubicacion"
+                        (click)="limpiarDetalleDocumento()"
                         mat-stroked-button>
-                        Borrar
+                            <mat-icon
+                                [svgIcon]="'heroicons_outline:trash'"></mat-icon>
                     </button>
-
                 </div>
 
             </div>
@@ -148,7 +146,7 @@
                                                 
                                                 <div class="relative">
                                                     <mat-icon
-                                                        class="icon-size-14 text-hint"
+                                                        class="icon-size-10 text-hint"
                                                         [svgIcon]="'iconsmind:file'"></mat-icon>
                                                     <div
                                                         class="absolute left-0 bottom-0 px-1.5 rounded text-sm font-semibold leading-5 text-white bg-red-600">

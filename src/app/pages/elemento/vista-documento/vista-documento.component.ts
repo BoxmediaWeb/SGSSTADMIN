@@ -76,6 +76,8 @@ export class VistaDocumentoComponent implements OnInit {
     this.linkDescarga=this.detalleDocumentoSeleccionado.ubicacion;
     this.matDrawer.open();
     console.log("Seleccionado =>", indice);
+    console.log("dataListaDocumentos =>", this.dataListaDocumentos);
+    console.log("dataListaDocumentoSeleccionado =>", this.dataListaDocumentos[indice]);
   }
 
   getMaestroDocumento(){
@@ -87,38 +89,6 @@ export class VistaDocumentoComponent implements OnInit {
       this.maestroDocumento = response[0];
      });
   }
-
-
-  borrarDetalleDocumento(){
-    const id = this.detalleDocumentoSeleccionado ?  `id: ${this.detalleDocumentoSeleccionado.id},` : '';
-    const limpiar = `limpiar: 1,`;
-
-    const nombreQuery='detalleDocumento';
-    const queryParams=`${id}${limpiar}`;
-    const queryProps='id';
-
-    this._apiService.setData(queryProps,queryParams,nombreQuery).
-    subscribe((response) => {
-
-        this.dataDetalleDocumento;
-        this.detalleDocumentoSeleccionado=this.detalleDocumentoSeleccionado;
-        this.linkDescarga=this.detalleDocumentoSeleccionado.ubicacion;
-
-        this._snackBar.open('Borrado', null, {
-          duration: 4000
-        });
-     },
-     error => {
-      console.log(error);
-
-      this._snackBar.open('Error', null, {
-        duration: 4000
-      });
-    }
-     
-     );
-    }
-
 
   mutacionDetalleDocumentoModal(){
     const dialogRef = this._dialog.open(MutacionDetalleDocumentoModalComponent, {
@@ -135,6 +105,10 @@ export class VistaDocumentoComponent implements OnInit {
       if(result.guardado==true){
         this.guardadoModal();
       }
+
+      this.getDetallesDocumento();
+      this.dataListaDocumentos;
+      this.selectMaestro(this.detalleDocumentoSeleccionado.id);
   });
 
   }
@@ -158,18 +132,6 @@ export class VistaDocumentoComponent implements OnInit {
      }
      );
 
-    /*
-    const nombreQuery="detalledocumentos/getdetalledocumento"
-    const queryParams=`id=${1}`
-  
-    this._apiService.getQuery(nombreQuery,queryParams).
-    subscribe((response) => {
-        console.log("Esta es la respuesta del detalle documento",response);
-     },
-     error=>{
-       console.log(error);
-     }
-     );*/
   }
 
   guardadoModal(): void
@@ -198,6 +160,39 @@ export class VistaDocumentoComponent implements OnInit {
   selectCotizacion() {
     this.router.navigate([`/planear/indice/${this.maestroIndice}`]);
   }
+
+ limpiarDetalleDocumento(){
+  const nombreQuery = `detalledocumentos/${this.detalleDocumentoSeleccionado.id}`;
+  const paramQuery = "eliminar=true";
+
+    const dataQuery={
+      fecha:null,
+      version:null,
+      ubicacion:null,
+      comentario:null
+    }
+
+    this._apiService.postQuery(nombreQuery, dataQuery, paramQuery).subscribe(
+      (response: any) => {
+
+        console.log("Este es el detalleDocumento actualizado =>", response);
+        this.getDetallesDocumento();
+        this.dataListaDocumentos;
+        this.selectMaestro(this.detalleDocumentoSeleccionado.id);
+        
+        this._snackBar.open('Imágen guardada', null, {
+          duration: 4000
+        });
+      },
+      error => {
+        console.log(error);
+
+        this._snackBar.open('Error', null, {
+          duration: 4000
+        });
+      }
+    );
+ }
 
   ngOnInit(): void
   {

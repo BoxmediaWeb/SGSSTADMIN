@@ -112,10 +112,6 @@ export class ApiService {
 
   //Api de node
 
-  public postQueryFile(nombreQuery,dataForm): Observable<any>{
-    return this._httpClient.post(`${environment.NodeServerUrl}/${nombreQuery}`,dataForm);
-  }
-
   public getQuery(nombreQuery,queryParams): Observable<any>{
     return this._httpClient.get(`${environment.NodeServerUrl}/${nombreQuery}?${queryParams}`);
   }
@@ -128,6 +124,10 @@ export class ApiService {
     return this._httpClient.delete(`${environment.NodeServerUrl}/${nombreQuery}?${queryParams}`);
   }
 
+  public postQueryFile(nombreQuery,dataForm): Observable<any>{
+    return this._httpClient.post(`${environment.NodeServerUrl}/${nombreQuery}`,dataForm);
+  }
+  
   constructor(private readonly _httpClient:HttpClient) {
   }
 

@@ -22,11 +22,11 @@ export class MutacionDetalleDocumentoModalComponent implements OnInit {
 
     detalleDocumentoForm = this._formBuilder.group({
       fecha     : [moment().format('YYYY-MM-DD'), [Validators.required]],
-      version     : ['1', [Validators.required]],
+      version     : ['1', []],
       comentario     : [, []],
-      vigencia     : [, [Validators.required]],
-      archivo     : [, [Validators.required]],
-      enlace     : [, [Validators.required]],
+      vigencia     : [, []],
+      archivo     : [, []],
+      enlace     : [, []],
     });
   archivoDocumento: any;
   usuarioActual: import("f:/BOXMEDIA 2020-2021/DESARROLLO/SW_SG_SST/admin/src/app/core/user/user.types").User;
@@ -45,68 +45,21 @@ export class MutacionDetalleDocumentoModalComponent implements OnInit {
     });
   }
 
-
   CambioInputArchivo(fileInputEvent: any) {
     this.nombreArchivoSeleccionado=fileInputEvent.target.files[0].name;
     this.archivoDocumento= fileInputEvent.target.files[0];
   }
 
   guardar(){
-    /*if(this.data.maestro.tipo_documento!='Matriz'){
-      this.saveImagenUsuario();
+    if(this.data.detalleDocumento){
+      this.saveDetalleDocumentoArchivo();
     }else{
-      
+      this.saveDetalleDocumentoMatriz();
     }
-    this.guardado = true;*/
   }
 
-
-  /*
-  setDetalleDocumento(archivo_guardado=null){
-    const data = this.detalleDocumentoForm.value;
-    const id = this.data.detalleDocumento ?  `id: ${this.data.detalleDocumento.id},` : '';
-    const fecha = data.fecha ?  `fecha: "${moment(data.fecha).format('YYYY-MM-DD')}",` : '';
-    const estado = `estado: 1,`;
-    const version = data.version ? `version: ${data.version},` : '';
-    const vigencia = data.vigencia ? `vigencia: "${data.vigencia}",` : '';
-    const comentario = data.comentario ? `comentario: "${data.comentario}",` : '';
-    const usuario = this.user ? `usuario: "${this.user.name}",` : '';
-    const maestro_id = this.data.maestro.id ? `maestro_id: ${this.data.maestro.id},` : '';
-    const ubicacion_archivo = archivo_guardado && this.data.maestro.tipo_documento!='Matriz'?`ubicacion:"${archivo_guardado}"`:'';
-    const ubicacion_enlace = data.enlace && this.data.maestro.tipo_documento=='Matriz'?`ubicacion:"${data.enlace}"`:'';
-
-    const nombreQuery='detalleDocumento';
-    const queryParams=`${id}${vigencia}${version}${estado}${comentario}${maestro_id}${ubicacion_archivo}${ubicacion_enlace}${fecha}${usuario}`;
-    const queryProps='id';
-
-    this._apiService.setData(queryProps,queryParams,nombreQuery).
-    subscribe((response) => {
-
-        this._snackBar.open('Guardado', null, {
-          duration: 4000
-        });
-
-        this.cerrarModal();
-     },
-     error => {
-      console.log(error);
-
-      this._snackBar.open('Error', null, {
-        duration: 4000
-      });
-    }
-     
-     );
-    }*/
-
-    
   detectarCambio(event){
-    //const imagenRecibida= event.target.files[0];
     this.archivoDocumento= event.target.files[0];
-    //this.extraerBase64(this.archivoDocumento).then((documento:any)=>{
-      //this.img_previsualizada = imagen.base;
-    //});
-    //console.log(event.target.files);
   }
 
   getUsuarioLogueado(){
@@ -146,17 +99,29 @@ export class MutacionDetalleDocumentoModalComponent implements OnInit {
   });
 
 
-  saveImagenUsuario()
+  saveDetalleDocumentoArchivo()
   {
-    const prefijo_documento = this.data.maestro.ubicacion ? this.data.maestro.ubicacion:null;
+    const nombreQuery = "detalledocumentos/upload";
 
-    this._apiService.setDataArchivo(this.archivoDocumento, prefijo_documento).subscribe(
+    const valores=this.detalleDocumentoForm.value;
+    const formData = new FormData();
+
+    formData.append("ubicacion", this.data.detalleDocumento.ubicacion);
+    formData.append("estandar", this.data.detalleDocumento.MaestroDocumento.ubicacion);
+    formData.append("detalleDocumentoId", this.data.detalleDocumento.id);
+    formData.append("version", valores.version);
+    formData.append("comentario", valores.comentario);
+    formData.append("fecha", valores.fecha);
+    formData.append("archivoDetalleDocumento", this.archivoDocumento);
+
+    this._apiService.postQueryFile(nombreQuery, formData).subscribe(
       (response: any) => {
-          //this.setDetalleDocumento(response.nombre);
+        
+        this.cerrarModal();
 
-          this._snackBar.open('Imágen guardada', null, {
-            duration: 4000
-          });
+        this._snackBar.open('Imágen guardada', null, {
+          duration: 4000
+        });
       },
       error => {
         console.log(error);
@@ -168,22 +133,35 @@ export class MutacionDetalleDocumentoModalComponent implements OnInit {
     );
  }
 
+ 
+ saveDetalleDocumentoMatriz()
+ {
+   const nombreQuery = "detalledocumentos/matriz";
+   const valores=this.detalleDocumentoForm.value;
+   valores.nombreEstandar=this.data.maestro;
+   valores.indexEstandar=this.data.indice;
+
+
+   this._apiService.postQuery(nombreQuery, valores).subscribe(
+     (response: any) => {
+       
+       this.cerrarModal();
+
+       this._snackBar.open('Imágen guardada', null, {
+         duration: 4000
+       });
+     },
+     error => {
+       console.log(error);
+
+       this._snackBar.open('Error', null, {
+         duration: 4000
+       });
+     }
+   );
+}
 
   ngOnInit(): void {
-    /*
-    if(this.data.maestro.tipo_documento=='Matriz'){
-      this.detalleDocumentoForm.controls['archivo'].setValidators([]);
-      this.detalleDocumentoForm.controls['enlace'].setValidators([Validators.required]);
-      this.detalleDocumentoForm.controls['vigencia'].setValidators([Validators.required]);
-    }else{
-      this.detalleDocumentoForm.controls['enlace'].setValidators([]);
-      this.detalleDocumentoForm.controls['archivo'].setValidators([Validators.required]);
-      this.detalleDocumentoForm.controls['vigencia'].setValidators([]);
-    }
-    this.detalleDocumentoForm.controls['archivo'].updateValueAndValidity();
-    this.detalleDocumentoForm.controls['enlace'].updateValueAndValidity();
-    */
-
     this.getUsuarioLogueado();
   }
 
