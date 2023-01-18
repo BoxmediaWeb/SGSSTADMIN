@@ -16,14 +16,9 @@ import { FuseMasonryModule } from '@fuse/components/masonry';
 import { FuseNavigationModule } from '@fuse/components/navigation';
 import { FuseScrollResetModule } from '@fuse/directives/scroll-reset';
 import { SharedModule } from 'app/shared/shared.module';
-import { PlanearRoutes } from 'app/pages/planear/planear.routing';
-//import { ContenedorComponent } from './contenedor/contenedor.component';
-//import { DocumentoComponent } from './documento/documento.component';
-import { HacerComponent } from '../hacer/hacer.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
-//import { ArchivosComponent } from './archivos/archivos.component';
 import { CommonModule } from '@angular/common';
 import { FormularioEstandarComponent } from './formulario-estandar.component';
 
@@ -74,7 +69,6 @@ const Rutas =[
     ],
 
     providers: [
-        HacerComponent
     ]
 })
 export class FormularioEstandarModule

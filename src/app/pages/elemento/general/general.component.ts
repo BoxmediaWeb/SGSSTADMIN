@@ -5,7 +5,6 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { ApiService } from 'app/core/api/api.service';
 import { MutacionDetalleDocumentoModalComponent } from 'app/modals/mutacionDetalleDocumentoModal/mutacion-detalle-documento-modal.component';
-import { PlanearComponent } from 'app/pages/planear/planear.component';
 import { ConfirmacionService } from 'app/servicios/confirmacion.service';
 import { FileService } from 'app/servicios/file.service';
 import { GuardadoService } from 'app/servicios/guardado.service';
@@ -29,7 +28,6 @@ export class GeneralComponent implements OnInit {
 
   toggleDrawer(): void
   {
-    this._planearComponent.matDrawer.toggle();
   }
 
   irArchivos() {
@@ -66,7 +64,6 @@ export class GeneralComponent implements OnInit {
     private route: ActivatedRoute,
     private _router:Router,
     private _apiService:ApiService,
-    private _planearComponent: PlanearComponent,
     public _dialog: MatDialog,
     public _guardadoServicer: GuardadoService,
     private _generalService: GeneralService

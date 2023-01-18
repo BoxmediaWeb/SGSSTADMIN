@@ -4,7 +4,6 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ApiService } from 'app/core/api/api.service';
 import { MutacionDetalleDocumentoModalComponent } from 'app/modals/mutacionDetalleDocumentoModal/mutacion-detalle-documento-modal.component';
-//import { PlanearComponent } from 'app/pages/planear/planear.component';
 import { FileService } from 'app/servicios/file.service';
 import { GuardadoService } from 'app/servicios/guardado.service';
 import { filter } from 'rxjs';
@@ -12,9 +11,6 @@ import { saveAs } from 'file-saver';
 import { E1p1Component } from '../e1p1/e1p1.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmacionService } from 'app/servicios/confirmacion.service';
-import { HacerComponent } from 'app/pages/hacer/hacer.component';
-import { VerificarComponent } from 'app/pages/verificar/verificar.component';
-import { ActuarComponent } from 'app/pages/actuar/actuar.component';
 
 @Component({
   selector: 'app-contenedor4',
@@ -38,7 +34,6 @@ export class Contenedor4Component implements OnInit {
     private route: ActivatedRoute,
     private _router:Router,
     private _apiService:ApiService,
-    private _actuarComponent: ActuarComponent,
     public _dialog: MatDialog,
     public _guardadoServicer: GuardadoService,
     private _fileService: FileService,
@@ -116,7 +111,6 @@ export class Contenedor4Component implements OnInit {
   toggleDrawer(): void
   {
     // Toggle the drawer
-    this._actuarComponent.matDrawer.toggle();
   }
 
   

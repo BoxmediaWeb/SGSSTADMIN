@@ -5,7 +5,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { ApiService } from 'app/core/api/api.service';
-import { InputsComponent } from 'app/pages/actuar/inputs/inputs.component';
 import { filter, Subject } from 'rxjs';
 import { GeneralService } from '../general.service';
 import { InputsModalComponent } from '../inputs-modal/inputs-modal.component';

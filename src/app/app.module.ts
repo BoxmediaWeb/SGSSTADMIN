@@ -17,7 +17,6 @@ import {MatTableModule} from '@angular/material/table';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { PlanearComponent } from './pages/planear/planear.component';
 import { FuseAlertModule } from '@fuse/components/alert';
 import { FuseCardModule } from '@fuse/components/card';
 import { FuseDrawerModule } from '@fuse/components/drawer';
@@ -28,9 +27,6 @@ import { FuseNavigationModule } from '@fuse/components/navigation';
 import { FuseScrollResetModule } from '@fuse/directives/scroll-reset';
 import { SharedModule } from './shared/shared.module';
 import { E1p1Component } from './pages/estandar1/e1p1/e1p1.component';
-import { HacerComponent } from './pages/hacer/hacer.component';
-import { VerificarComponent } from './pages/verificar/verificar.component';
-import { ActuarComponent } from './pages/actuar/actuar.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
@@ -68,7 +64,6 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { PesvComponent } from './pages/pesv/pesv.component';
 import { Contenedor2Component } from './pages/estandar1/contenedor2/contenedor2.component';
 import { Contenedor3Component } from './pages/estandar1/contenedor3/contenedor3.component';
-import { Contenedor4Component } from './pages/estandar1/contenedor4/contenedor4.component';
 import { SeccionComponent } from './pages/seccion/seccion.component';
 import { CommonModule } from '@angular/common';
 import { FormularioEstandarComponent } from './pages/formulario-estandar/formulario-estandar.component';
@@ -93,11 +88,7 @@ const routerConfig: ExtraOptions = {
 @NgModule({
     declarations: [
         AppComponent,
-        PlanearComponent,
         E1p1Component,
-        HacerComponent,
-        VerificarComponent,
-        ActuarComponent,
         InicioComponent,
         MutacionDetalleDocumentoModalComponent,
         DocumentoComponent,
@@ -115,7 +106,6 @@ const routerConfig: ExtraOptions = {
         PesvComponent,
         Contenedor2Component,
         Contenedor3Component,
-        Contenedor4Component,
         SeccionComponent,
         FormularioEstandarComponent,
         ElementoComponent,

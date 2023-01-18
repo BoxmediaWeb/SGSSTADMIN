@@ -7,7 +7,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { ApiService } from 'app/core/api/api.service';
 import { MutacionDetalleDocumentoModalComponent } from 'app/modals/mutacionDetalleDocumentoModal/mutacion-detalle-documento-modal.component';
-import { PlanearComponent } from 'app/pages/planear/planear.component';
 import { RutaFormateoPipe } from 'app/pipes/ruta-formateo.pipe';
 import { FileService } from 'app/servicios/file.service';
 import { GuardadoService } from 'app/servicios/guardado.service';
@@ -44,7 +43,6 @@ export class VistaDocumentoComponent implements OnInit {
     private _fuseMediaWatcherService: FuseMediaWatcherService,
     private route: ActivatedRoute,
     private _httpClient: HttpClient,
-    private _planearComponent: PlanearComponent,
     private _apiService: ApiService,
     private router: Router,
     public _dialog: MatDialog,

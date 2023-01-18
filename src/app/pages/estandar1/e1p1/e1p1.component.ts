@@ -1,7 +1,6 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { FuseAlertService,  } from '@fuse/components/alert';
 import { ApiService } from 'app/core/api/api.service';
-import { PlanearComponent } from 'app/pages/planear/planear.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MutacionDetalleDocumentoModalComponent } from 'app/modals/mutacionDetalleDocumentoModal/mutacion-detalle-documento-modal.component';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
@@ -28,7 +27,6 @@ export class E1p1Component implements OnInit {
   dataNombre: any;
 
   constructor(
-    private _planearComponent: PlanearComponent,
     private _apiService: ApiService,
     private _confirmacionServicer: ConfirmacionService,
     public dialog: MatDialog,
@@ -45,8 +43,7 @@ export class E1p1Component implements OnInit {
   */
   toggleDrawer(): void
   {
-    // Toggle the drawer
-    this._planearComponent.matDrawer.toggle();
+    
   }
 
   getDetalleDocumento(){

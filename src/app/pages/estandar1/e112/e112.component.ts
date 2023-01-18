@@ -4,7 +4,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ApiService } from 'app/core/api/api.service';
 import { MutacionDetalleDocumentoModalComponent } from 'app/modals/mutacionDetalleDocumentoModal/mutacion-detalle-documento-modal.component';
-import { PlanearComponent } from 'app/pages/planear/planear.component';
 import { ConfirmacionService } from 'app/servicios/confirmacion.service';
 import { FileService } from 'app/servicios/file.service';
 import moment from 'moment';
@@ -58,7 +57,6 @@ export class E112Component implements OnInit {
   ];
 
   constructor(
-    private _planearComponent: PlanearComponent,
     private _apiService: ApiService,
     private _confirmacionServicer: ConfirmacionService,
     public dialog: MatDialog,
@@ -80,7 +78,6 @@ export class E112Component implements OnInit {
   toggleDrawer(): void
   {
     // Toggle the drawer
-    this._planearComponent.matDrawer.toggle();
   }
 
   getDetalleDocumento(){

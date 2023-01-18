@@ -16,17 +16,10 @@ import { FuseMasonryModule } from '@fuse/components/masonry';
 import { FuseNavigationModule } from '@fuse/components/navigation';
 import { FuseScrollResetModule } from '@fuse/directives/scroll-reset';
 import { SharedModule } from 'app/shared/shared.module';
-//import { HacerRoutes } from './actuar.routing';
-//import { ContenedorComponent } from './contenedor/contenedor.component';
-//import { DocumentoComponent } from './documento/documento.component';
-import { HacerComponent } from '../hacer/hacer.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
-import { PlanearComponent } from '../planear/planear.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-//import { EditMaestroComponent } from './editMaestro/edit-maestro.component';
-//import { InputsComponent } from './inputs/inputs.component';
 import { MatInputModule } from '@angular/material/input';
 import { ElementoRoutes } from './elemento.routing';
 import { GeneralComponent } from './general/general.component';
@@ -126,8 +119,6 @@ import { PdfDocumentoComponent } from './pdf-documento/pdf-documento.component';
         MatDatepickerModule
     ],
     providers: [
-        HacerComponent,
-        PlanearComponent
     ],
 })
 export class ElementoModule

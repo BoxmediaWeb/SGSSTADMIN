@@ -4,7 +4,6 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 import { ActivatedRoute, NavigationEnd, Router, NavigationStart, Event as NavigationEvent } from '@angular/router';
 import { ApiService } from 'app/core/api/api.service';
 import { MutacionDetalleDocumentoModalComponent } from 'app/modals/mutacionDetalleDocumentoModal/mutacion-detalle-documento-modal.component';
-import { PlanearComponent } from 'app/pages/planear/planear.component';
 import { FileService } from 'app/servicios/file.service';
 import { GuardadoService } from 'app/servicios/guardado.service';
 import { filter } from 'rxjs';
@@ -38,7 +37,6 @@ export class ContenedorComponent implements OnInit {
     private route: ActivatedRoute,
     private _router:Router,
     private _apiService:ApiService,
-    private _planearComponent: PlanearComponent,
     public _dialog: MatDialog,
     public _guardadoServicer: GuardadoService,
     private _fileService: FileService,
@@ -125,7 +123,6 @@ export class ContenedorComponent implements OnInit {
      toggleDrawer(): void
      {
        // Toggle the drawer
-       this._planearComponent.matDrawer.toggle();
      }
 
 

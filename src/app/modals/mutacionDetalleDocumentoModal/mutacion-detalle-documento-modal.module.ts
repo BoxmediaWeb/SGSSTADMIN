@@ -15,7 +15,6 @@ import { FuseMasonryModule } from '@fuse/components/masonry';
 import { FuseNavigationModule } from '@fuse/components/navigation';
 import { FuseScrollResetModule } from '@fuse/directives/scroll-reset';
 import { SharedModule } from 'app/shared/shared.module';
-import { PlanearRoutes } from 'app/pages/planear/planear.routing';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatSnackBarModule} from '@angular/material/snack-bar';

@@ -3,7 +3,6 @@ import { Subject, takeUntil } from 'rxjs';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { PlanearComponent } from '../planear/planear.component';
 import { ApiService } from 'app/core/api/api.service';
 import { MatDrawer } from '@angular/material/sidenav';
 import { MutacionDetalleDocumentoModalComponent } from 'app/modals/mutacionDetalleDocumentoModal/mutacion-detalle-documento-modal.component';
@@ -43,7 +42,6 @@ export class ArchivosComponent implements OnInit {
     private _fuseMediaWatcherService: FuseMediaWatcherService,
     private route: ActivatedRoute,
     private _httpClient: HttpClient,
-    private _planearComponent: PlanearComponent,
     private _apiService: ApiService,
     private router: Router,
     public _dialog: MatDialog,

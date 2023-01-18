@@ -78,10 +78,6 @@ export const appRoutes: Route[] = [
         children   : [
             {path: 'formularioestandar', loadChildren: () => import('app/pages/formulario-estandar/formulario-estandar.module').then(m => m.FormularioEstandarModule)},
             {path: 'example', loadChildren: () => import('app/modules/admin/example/example.module').then(m => m.ExampleModule)},
-            {path: 'sgsst/planear', loadChildren: () => import('app/pages/planear/planear.module').then(m => m.PlanearModule)},
-            {path: 'sgsst/hacer', loadChildren: () => import('app/pages/hacer/hacer.module').then(m => m.HacerModule)},
-            {path: 'sgsst/actuar', loadChildren: () => import('app/pages/actuar/actuar.module').then(m => m.ActuarModule)},
-            {path: 'sgsst/verificar', loadChildren: () => import('app/pages/verificar/verificar.module').then(m => m.VerificarModule)},
             {path: 'inicio', loadChildren: () => import('app/pages/inicio/inicio.module').then(m => m.InicioModule)},
             {path: 'usuarios', loadChildren: () => import('app/pages/usuarios/usuarios.module').then(m => m.UsuariosModule)},
             {path: 'calendario', loadChildren: () => import('app/pages/calendario/calendario.module').then(m => m.CalendarioModule)},

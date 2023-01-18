@@ -15,7 +15,6 @@ import { FuseMasonryModule } from '@fuse/components/masonry';
 import { FuseNavigationModule } from '@fuse/components/navigation';
 import { FuseScrollResetModule } from '@fuse/directives/scroll-reset';
 import { SharedModule } from 'app/shared/shared.module';
-import { PlanearRoutes } from 'app/pages/planear/planear.routing';
 import { E1p1Component } from '../e1p1/e1p1.component';
 import { E112Component } from '../e112/e112.component';
 import { E113Component } from '../e113/e113.component';

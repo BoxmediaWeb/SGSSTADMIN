@@ -5,7 +5,6 @@ import { ApiService } from 'app/core/api/api.service';
 import { FileService } from 'app/servicios/file.service';
 import { environment } from 'environments/environment';
 import { filter, Observable } from 'rxjs';
-import { PlanearComponent } from '../planear/planear.component';
 
 @Component({
   selector: 'app-documento',
@@ -25,7 +24,6 @@ export class DocumentoComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private _httpClient: HttpClient,
-    private _planearComponent: PlanearComponent,
     private _apiService: ApiService,
     private router: Router,
     private _fileService: FileService,
@@ -36,8 +34,6 @@ export class DocumentoComponent implements OnInit {
 
   toggleDrawer(): void
   {
-    // Toggle the drawer
-    this._planearComponent.matDrawer.toggle();
   }
 
   getMaestroDocumento(){
