@@ -9,6 +9,7 @@ import { PlanearComponent } from 'app/pages/planear/planear.component';
 import { ConfirmacionService } from 'app/servicios/confirmacion.service';
 import { FileService } from 'app/servicios/file.service';
 import { GuardadoService } from 'app/servicios/guardado.service';
+import { environment } from 'environments/environment';
 import { filter, Subject } from 'rxjs';
 import { GeneralService } from '../general.service';
 
@@ -131,6 +132,10 @@ export class ListaComponent implements OnInit {
   });
 
   }
+
+  /*irEnlaceMatriz(ubicacion){
+    return `${environment.NodeServerUrl}/${ubicacion}`;
+  }*/
 
   constructor(
     private route: ActivatedRoute,

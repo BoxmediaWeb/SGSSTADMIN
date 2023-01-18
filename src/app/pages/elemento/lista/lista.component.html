@@ -205,16 +205,12 @@
                                             [svgIcon]="'heroicons_outline:document-text'"></mat-icon>
                                         </button>
 
-                                        <button
-                                            *ngIf="archivo.tipoDocumento=='Matriz'"
-                                            (click)="editarExcel(budget.ubicacion)"
-                                            class="min-w-10 min-h-7 h-7 px-2 leading-6 ml-2"
-                                            mat-stroked-button>
-                                            Editar
+                                        <a class="cursor-pointer flex" *ngIf="archivo.tipoDocumento=='Matriz'" [href]="budget.ubicacion" target="_blank">
+                                            <span>Editar</span>
                                             <mat-icon
                                                 class="icon-size-5"
                                                 [svgIcon]="'heroicons_outline:document-text'"></mat-icon>
-                                        </button>
+                                        </a>
 
                                         <button
                                         (click)="borrarDetallesDocumento(budget)"
