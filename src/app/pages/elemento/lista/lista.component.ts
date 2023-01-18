@@ -12,6 +12,7 @@ import { GuardadoService } from 'app/servicios/guardado.service';
 import { environment } from 'environments/environment';
 import { filter, Subject } from 'rxjs';
 import { GeneralService } from '../general.service';
+import { PdfDocumentoComponent } from '../pdf-documento/pdf-documento.component';
 
 @Component({
   selector: 'app-lista',
@@ -131,6 +132,17 @@ export class ListaComponent implements OnInit {
       this.selectMaestro(this.detalleDocumentoSeleccionado.id);*/
   });
 
+  }
+
+  vistaPDFModal(detalle){
+    const dialogRef = this._dialog.open(PdfDocumentoComponent, {
+      minWidth: '500px',
+      data:{
+        idDetalleDocumento:detalle.id
+      }
+    });
+  
+    dialogRef.afterClosed().subscribe((result: any) => {});
   }
 
   /*irEnlaceMatriz(ubicacion){
