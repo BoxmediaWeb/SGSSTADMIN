@@ -26,7 +26,6 @@ import { FuseMasonryModule } from '@fuse/components/masonry';
 import { FuseNavigationModule } from '@fuse/components/navigation';
 import { FuseScrollResetModule } from '@fuse/directives/scroll-reset';
 import { SharedModule } from './shared/shared.module';
-import { E1p1Component } from './pages/estandar1/e1p1/e1p1.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
@@ -42,10 +41,6 @@ import {MatStepperModule} from '@angular/material/stepper';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DocumentoComponent } from './pages/documento/documento.component';
-import { E112Component } from './pages/estandar1/e112/e112.component';
-import { ContenedorComponent } from './pages/estandar1/contenedor/contenedor.component';
-import { E113Component } from './pages/estandar1/e113/e113.component';
-import { E114Component } from './pages/estandar1/e114/e114.component';
 import { SafePipe } from './pipes/safe.pipe';
 import { RutaFormateoPipe } from './pipes/ruta-formateo.pipe';
 import { ArchivosComponent } from './pages/archivos/archivos.component';
@@ -62,8 +57,6 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import { EventoModalComponent } from './modals/eventoModal/evento-modal.component';
 import interactionPlugin from '@fullcalendar/interaction';
 import { PesvComponent } from './pages/pesv/pesv.component';
-import { Contenedor2Component } from './pages/estandar1/contenedor2/contenedor2.component';
-import { Contenedor3Component } from './pages/estandar1/contenedor3/contenedor3.component';
 import { SeccionComponent } from './pages/seccion/seccion.component';
 import { CommonModule } from '@angular/common';
 import { FormularioEstandarComponent } from './pages/formulario-estandar/formulario-estandar.component';
@@ -88,14 +81,9 @@ const routerConfig: ExtraOptions = {
 @NgModule({
     declarations: [
         AppComponent,
-        E1p1Component,
         InicioComponent,
         MutacionDetalleDocumentoModalComponent,
         DocumentoComponent,
-        E112Component,
-        ContenedorComponent,
-        E113Component,
-        E114Component,
         ArchivosComponent,
         SafePipe,
         RutaFormateoPipe,
@@ -104,8 +92,6 @@ const routerConfig: ExtraOptions = {
         CalendarioComponent,
         EventoModalComponent,
         PesvComponent,
-        Contenedor2Component,
-        Contenedor3Component,
         SeccionComponent,
         FormularioEstandarComponent,
         ElementoComponent,

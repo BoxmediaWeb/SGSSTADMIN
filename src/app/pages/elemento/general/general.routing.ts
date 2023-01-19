@@ -5,16 +5,8 @@ import { PdfDocumentoComponent } from '../pdf-documento/pdf-documento.component'
 import { VerMaestroComponent } from '../ver-maestro/ver-maestro.component';
 import { VistaDocumentoComponent } from '../vista-documento/vista-documento.component';
 import { GeneralComponent } from './general.component';
-//import { ElementoComponent } from './elemento.component';
-//import { GeneralComponent } from './general/general.component';
-//import { DocumentoComponent } from './documento/documento.component';
-//import { ActuarComponent } from './actuar.component';
-//import { ContenedorComponent } from './contenedor/contenedor.component';
-//import { FormularioEstandarComponent } from '../formulario-estandar/formulario-estandar.component';
-//import { EditMaestroComponent } from './editMaestro/edit-maestro.component';
 
 export const GeneralRoutes: Route[] = [
-    //{ path: '',   redirectTo: 'estandar/hacer/E.3.1.1', pathMatch: 'full' },
     {
         path     : ':id',
         component: GeneralComponent,

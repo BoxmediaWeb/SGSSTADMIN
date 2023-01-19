@@ -1,7 +1,6 @@
 import { Route } from '@angular/router';
 import { ArchivosComponent } from '../archivos/archivos.component';
 import { DocumentoComponent } from '../documento/documento.component';
-import { ContenedorComponent } from '../estandar1/contenedor/contenedor.component';
 import { CrearComponent } from './crear/crear.component';
 import { DetalleComponent } from './detalle/detalle.component';
 import { PerfilComponent } from './perfil/perfil.component';
