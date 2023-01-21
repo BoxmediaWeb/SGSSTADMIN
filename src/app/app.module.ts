@@ -64,8 +64,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { ElementoComponent } from './pages/elemento/elemento.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
-
+import { EstandarComponent } from './modules/estandar/estandar.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -95,6 +94,7 @@ const routerConfig: ExtraOptions = {
         SeccionComponent,
         FormularioEstandarComponent,
         ElementoComponent,
+        EstandarComponent,
     ],
     imports     : [
         CommonModule,

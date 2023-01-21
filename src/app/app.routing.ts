@@ -84,10 +84,11 @@ export const appRoutes: Route[] = [
             {path: 'pesv', loadChildren: () => import('app/pages/pesv/pesv.module').then(m => m.PesvModule)},
             {path: 'seccion/:grupo', loadChildren: () => import('app/pages/seccion/seccion.module').then(m => m.SeccionModule)},
             
-
-
-            
+            /*Antigua*/
             {path: 'estandar', loadChildren: () => import('app/pages/elemento/elemento.module').then(m => m.ElementoModule)},
+
+            /*Actual*/
+            {path: 'sgsst/:seccion', loadChildren: () => import('app/modules/estandar/estandar.module').then(m => m.EstandarModule)},
         ]
     }
     
