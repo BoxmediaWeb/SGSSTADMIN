@@ -88,7 +88,7 @@ export const appRoutes: Route[] = [
             {path: 'estandar', loadChildren: () => import('app/pages/elemento/elemento.module').then(m => m.ElementoModule)},
 
             /*Actual*/
-            {path: 'sgsst/:seccion', loadChildren: () => import('app/modules/estandar/estandar.module').then(m => m.EstandarModule)},
+            {path: 'sgsst', loadChildren: () => import('app/modules/estandar/estandar.module').then(m => m.EstandarModule)},
         ]
     }
     

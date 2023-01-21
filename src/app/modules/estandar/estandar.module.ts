@@ -45,10 +45,10 @@ const EstandarRoutes: Route[] = [
         component: EstandarComponent,
         children : [
             {
-                path: '', redirectTo: 'e'
+                path: '', redirectTo: 'planear/E.1.1.1/0'
             },
             {
-                path     : 'e',
+                path     : ':seccion/:codigoEstandar/:indice',
                 component: ListaDetalleDocumentosComponent,
             }
         ]
