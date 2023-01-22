@@ -12,14 +12,15 @@ export class ListaDetalleDocumentosComponent implements OnInit {
   dataListaDocumentos=[];
   displayedColumns: string[];
   codigoEstandar: string;
-  indice: string;
+  indice: any;
   dataMaestros: any;
   dataMaestroDocumentos: any;
   maestroActual: any;
   seccion: string;
 
   tabChanged($event){
-    this.indice = $event.index;
+    //this.indice = $event.index;
+    this._estandarService.setIndice($event.index);
     this._estandarService.setMaestroActual(this.dataMaestros[this.indice]);
     this.getListaDetalleDocumentos();
   }
@@ -57,7 +58,8 @@ export class ListaDetalleDocumentosComponent implements OnInit {
     this._activatedRoute.parent.firstChild.paramMap.subscribe((params) => {
       this.seccion=params.get('seccion');
       this.codigoEstandar=params.get('codigoEstandar');
-      this.indice=params.get('indice');
+      //this.indice=params.get('indice');
+      this._estandarService.setIndice(params.get('indice'));
     });
   }
 
@@ -67,13 +69,24 @@ export class ListaDetalleDocumentosComponent implements OnInit {
     });
   }
 
+  getIndice(){
+    this._estandarService.getIndice().subscribe(async(indice)=>{
+      this.indice = await indice;
+    });
+  }
+
   irVistaMaestro(){
     this._router.navigate([`/sgsst/${this.seccion}/formato-maestro/ver/${this.maestroActual.id}`]);
+  }
+
+  irVistaDetalleDocumento(){
+    this._router.navigate([`/sgsst/${this.seccion}/detalle-documento/crear/${this.maestroActual.id}`]);
   }
 
   ngOnInit(): void {
     this.displayedColumns = ['vigencia','usuario','comentario','fecha','version','estado','acciones'];
     this.getParamsRuta();
+    this.getIndice();
     this.getMaestroActual();
     this.getMaestrosDocumentos();
     this.getListaDetalleDocumentos();

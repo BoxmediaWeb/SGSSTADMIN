@@ -1,1 +1,48 @@
-<p>detalle-documento works!</p>
+<section class="p-5" *ngIf="funcionalidadDetalleDocumento=='ver' && contenidoDetalleDocumento">
+
+    <div>
+        <button class="bg-[#B71C1C] text-white" mat-button>
+            PDF
+            <mat-icon class="icon-size-5 text-white ml-1" [svgIcon]="'heroicons_outline:document-text'"></mat-icon>
+        </button>
+
+        <button class="bg-[#0D47A1] text-white ml-2" (click)="irVistaEditarMaestro()" mat-button>
+            Editar
+            <mat-icon class="icon-size-5 text-white ml-1" [svgIcon]="'heroicons_outline:save'"></mat-icon>
+        </button>
+    </div>
+
+    <div class="p-2" [innerHTML]="contenidoDetalleDocumento">
+        {{contenidoDetalleDocumento}}
+    </div>
+
+</section>
+
+<section *ngIf="funcionalidadDetalleDocumento=='crear' || funcionalidadDetalleDocumento=='editar'">
+
+    <div class="bg-[#E1F5FE] p-5">
+        <button
+            (click)="crearDetalleDocumento()"
+            class="bg-[#03A9F4] text-white bg-cyan-500 shadow-md shadow-cyan-500/50"
+            mat-flat-button>
+            Guardar
+            <mat-icon [svgIcon]="'heroicons_outline:save'" class="ml-2"></mat-icon>
+        </button>
+    </div>
+
+    <mat-tab-group class="pt-7 w-full">
+        <mat-tab [label]="'Editor'">
+            <div class="mb-10 w-full">
+                <form [formGroup]="detalleDocumentoCrearForm" crossOrigin="Anonymous">
+                    <angular-editor height="500" formControlName="contenido" [config]="editorConfig"></angular-editor>
+                </form>
+            </div>
+        </mat-tab>
+
+        <mat-tab [label]="'Previsualización'" class="block relative">
+            <div class="px-10 py-20" [innerHTML]="contenidoDetalleDocumento" id="contenedor" #content>
+                {{contenidoDetalleDocumento}}
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</section>

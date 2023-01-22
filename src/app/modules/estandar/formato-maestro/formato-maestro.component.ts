@@ -150,8 +150,8 @@ export class FormatoMaestroComponent implements OnInit {
         async (response: any) => {
           this.contenidoMaestro = await response.mensaje;
           
-          this.detalleDocumentoCrearForm.patchValue({
-            contenido: this.contenidoMaestro});
+          /*this.detalleDocumentoCrearForm.patchValue({
+            contenido: this.contenidoMaestro});*/
         },
         error => {
           console.log(error);

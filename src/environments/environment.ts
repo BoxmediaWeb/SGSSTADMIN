@@ -5,7 +5,7 @@
 export const environment = {
     production: false,
     //serverUrl: 'http://localhost:8000',
-    NodeServerUrl:'https://apinode.soyasesorias.co',
+    NodeServerUrl:'http://localhost:3000',
     serverUrl: 'https://api.itindro.co'
     //serverUrl: 'https://sgsstapi.soyasesorias.co http://api.itindro.co/'
 };

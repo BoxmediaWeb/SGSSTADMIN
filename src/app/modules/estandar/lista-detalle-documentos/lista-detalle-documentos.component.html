@@ -21,6 +21,7 @@
 
                 <div class="flex items-center ml-6" *ngIf="maestro.tipoDocumento!='Matriz'">
                     <button
+                        (click)="irVistaDetalleDocumento()"
                         class="hidden sm:inline-flex"
                         mat-stroked-button>
                         <mat-icon
