@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'app/core/api/api.service';
 import { EstandarService } from '../estandar.service';
 
@@ -15,6 +15,8 @@ export class ListaDetalleDocumentosComponent implements OnInit {
   indice: string;
   dataMaestros: any;
   dataMaestroDocumentos: any;
+  maestroActual: any;
+  seccion: string;
 
   tabChanged($event){
     this.indice = $event.index;
@@ -22,7 +24,7 @@ export class ListaDetalleDocumentosComponent implements OnInit {
     this.getListaDetalleDocumentos();
   }
 
-  constructor(private _activatedRoute: ActivatedRoute,private _apiService:ApiService,private _estandarService:EstandarService) { }
+  constructor(private _activatedRoute: ActivatedRoute,private _apiService:ApiService,private _estandarService:EstandarService,private _router:Router) { }
 
   getListaDetalleDocumentos(){
     const nombreQuery ='detalledocumentos';
@@ -51,14 +53,28 @@ export class ListaDetalleDocumentosComponent implements OnInit {
      });
   }
 
-  ngOnInit(): void {
-    this.displayedColumns = ['vigencia','usuario','comentario','fecha','version','estado','acciones'];
-
+  getParamsRuta(){
     this._activatedRoute.parent.firstChild.paramMap.subscribe((params) => {
+      this.seccion=params.get('seccion');
       this.codigoEstandar=params.get('codigoEstandar');
       this.indice=params.get('indice');
     });
+  }
 
+  getMaestroActual(){
+    this._estandarService.getMaestroActual().subscribe((maestro)=>{
+      this.maestroActual = maestro;
+    });
+  }
+
+  irVistaMaestro(){
+    this._router.navigate([`/sgsst/${this.seccion}/formato-maestro/ver/${this.maestroActual.id}`]);
+  }
+
+  ngOnInit(): void {
+    this.displayedColumns = ['vigencia','usuario','comentario','fecha','version','estado','acciones'];
+    this.getParamsRuta();
+    this.getMaestroActual();
     this.getMaestrosDocumentos();
     this.getListaDetalleDocumentos();
   }

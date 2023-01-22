@@ -1,1 +1,69 @@
-<p>formato-maestro works!</p>
+<div class="w-full h-full flex flex-col justify-center items-center" *ngIf="funcionalidadMaestro=='ver' && !contenidoMaestro">
+    <div>
+        <button mat-button (click)="irVistaCrearMaestro()">crear</button>
+    </div>
+    <div>
+        <p class="text-3xl font-bold flex justify-center align-center">
+            <mat-icon
+            class="icon-size-10"
+            [svgIcon]="'heroicons_outline:shield-exclamation'"></mat-icon>
+            <span class="opacity-50">¡Maestro no creado!</span>
+        </p>
+    </div>
+</div>
+
+<section class="p-5" *ngIf="funcionalidadMaestro=='ver' && contenidoMaestro">
+
+    <div>
+        <button class="bg-[#B71C1C] text-white" mat-button>
+            PDF
+            <mat-icon class="icon-size-5 text-white ml-1" [svgIcon]="'heroicons_outline:document-text'"></mat-icon>
+        </button>
+
+        <button class="bg-[#0D47A1] text-white ml-2" (click)="irVistaEditarMaestro()" mat-button>
+            Editar
+            <mat-icon class="icon-size-5 text-white ml-1" [svgIcon]="'heroicons_outline:save'"></mat-icon>
+        </button>
+    </div>
+
+    <!--<div #content class="mt-5 w-full pb-40">
+        <form
+        [formGroup]="detalleDocumentoForm" crossOrigin="Anonymous">
+            <angular-editor [(ngModel)]="htmlContent" height="1000" formControlName="texto" [config]="editorConfig"></angular-editor>
+        </form>
+    </div>-->
+
+    <div class="p-2" [innerHTML]="contenidoMaestro">
+        {{contenidoMaestro}}
+    </div>
+
+</section>
+
+<section *ngIf="funcionalidadMaestro=='crear' || funcionalidadMaestro=='editar'">
+
+    <div class="bg-[#E1F5FE] p-5">
+        <button
+            (click)="guardarMaestro()"
+            class="bg-[#03A9F4] text-white bg-cyan-500 shadow-md shadow-cyan-500/50"
+            mat-flat-button>
+            Guardar
+            <mat-icon [svgIcon]="'heroicons_outline:save'" class="ml-2"></mat-icon>
+        </button>
+    </div>
+
+    <mat-tab-group class="pt-7 w-full">
+        <mat-tab [label]="'Editor'">
+            <div class="mb-10 w-full">
+                <form [formGroup]="detalleDocumentoCrearForm" crossOrigin="Anonymous">
+                    <angular-editor height="500" formControlName="contenido" [config]="editorConfig"></angular-editor>
+                </form>
+            </div>
+        </mat-tab>
+
+        <mat-tab [label]="'Previsualización'" class="block relative">
+            <div class="px-10 py-20" [innerHTML]="contenidoMaestro" id="contenedor" #content>
+                {{contenidoMaestro}}
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</section>

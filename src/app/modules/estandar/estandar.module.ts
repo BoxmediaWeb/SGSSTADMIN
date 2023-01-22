@@ -37,6 +37,7 @@ import { ListaDetalleDocumentosComponent } from './lista-detalle-documentos/list
 import { DetalleDocumentoComponent } from './detalle-documento/detalle-documento.component';
 import { FormatoMaestroComponent } from './formato-maestro/formato-maestro.component';
 import { DocumentosComponent } from './documentos/documentos.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 
 const EstandarRoutes: Route[] = [
@@ -46,6 +47,10 @@ const EstandarRoutes: Route[] = [
         children : [
             {
                 path: '', redirectTo: 'planear/E.1.1.1/0'
+            },
+            {
+                path     : ':seccion/formato-maestro/:funcionalidadMaestro/:idMaestro',
+                component: FormatoMaestroComponent,
             },
             {
                 path     : ':seccion/:codigoEstandar/:indice',
@@ -141,6 +146,7 @@ const EstandarRoutes: Route[] = [
         ImageCropperModule,
         MatExpansionModule,
         MatSlideToggleModule,
+        AngularEditorModule
     ]
 })
 export class EstandarModule
