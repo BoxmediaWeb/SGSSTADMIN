@@ -1,0 +1,101 @@
+<div class="flex flex-col flex-auto">
+    <!-- Header -->
+    <div class="flex items-center justify-between">
+        <div class="text-2xl font-semibold">{{data?.maestroDocumento?.nombreCorto}}</div>
+        <button
+            (click)="this.dialogRef.close()"
+            matDialogClose
+            mat-icon-button>
+            <mat-icon [svgIcon]="'heroicons_outline:x'"></mat-icon>
+        </button>
+    </div>
+
+    <form
+    class="mt-8"
+    [formGroup]="detalleDocumentoForm" crossOrigin="Anonymous">
+
+        <mat-form-field class="w-full">
+            <mat-label>Fecha</mat-label>
+            <input
+                id="fecha"
+                matInput
+                [formControlName]="'fecha'"
+                [matDatepicker]="picker">
+
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+                
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Versión</mat-label>
+            <mat-select id="estado" [formControlName]="'version'">
+                <mat-option value=1>1.0</mat-option>
+                <mat-option value=2>2.0</mat-option>
+                <mat-option value=3>3.0</mat-option>
+                <mat-option value=4>4.0</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+            <mat-label>Comentario</mat-label>
+            <textarea matInput [formControlName]="'comentario'"  id="comentario" cols="30" rows="5"></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="w-full" *ngIf="data.maestroDocumento.tipoDocumento=='Matriz'">
+            <mat-label>Ubicación</mat-label>
+            <input
+                id="fecha"
+                type="url"
+                matInput
+                [formControlName]="'ubicacion'"
+                >
+        </mat-form-field>
+
+        <mat-form-field class="w-full" *ngIf="data.maestroDocumento.tipoDocumento=='Matriz'">
+            <mat-label>Vigencia</mat-label>
+            <input
+                id="fecha"
+                type="url"
+                matInput
+                [formControlName]="'vigencia'"
+                >
+        </mat-form-field>
+
+        <!--(change)="CambioInputArchivo($event)"-->
+        <input *ngIf="data.maestroDocumento.tipoDocumento!='Matriz'" [formControlName]="'archivo'" #inputArchivo hidden="true" accept="application/pdf" type="file">
+
+        <button
+        *ngIf="data.maestroDocumento.tipoDocumento!='Matriz'"
+        mat-flat-button
+        [color]="'primary'">
+            <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+            <span class="ml-2 mr-1" >Cargar archivo</span>
+        </button>
+
+        <div
+        class="flex items-center leading-5 text-md text-secondary ml-2 mt-3" *ngIf="data.maestroDocumento.tipoDocumento!='Matriz'">
+            <mat-icon
+                class="icon-size-5 text-hint"
+                [svgIcon]="'heroicons_solid:clipboard'"></mat-icon>
+
+            <div class="ml-1.5">jhkhgjkhjg</div>
+        </div>
+
+    </form>
+
+
+
+    <div class="flex items-center mt-10 py-4 pr-4 sm:pr-12">
+        <button
+            (click)="guardar()"
+            mat-flat-button
+            [color]="'primary'"
+            [disabled]="detalleDocumentoForm.invalid"
+            >
+            Guardar
+        </button>
+    </div>
+
+
+</div>
