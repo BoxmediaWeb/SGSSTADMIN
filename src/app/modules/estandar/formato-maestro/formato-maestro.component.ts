@@ -86,16 +86,15 @@ export class FormatoMaestroComponent implements OnInit {
 
   constructor(private _activatedRoute: ActivatedRoute,private _apiService:ApiService,private _estandarService:EstandarService,private _formBuilder: FormBuilder,private _snackbar:MatSnackBar,private _router:Router,private _snackBar: MatSnackBar) { }
 
-  
   guardarMaestro(){
     const nombreQuery = "maestrodocumentos/setarchivomaestro";
 
-    var valorMaestro ={
-      estandar:`${this.maestroActual.ubicacion}`,
-      valor:this.contenidoMaestro
+    var dataMaestro ={
+      maestroId:`${this.maestroActual.id}`,
+      contenido:this.contenidoMaestro
     };
 
-    this._apiService.postQuery(nombreQuery, valorMaestro).subscribe(
+    this._apiService.postQuery(nombreQuery, dataMaestro).subscribe(
       (response: any) => {
         this.irVistaListaDetalleDocumentos();
       },
@@ -109,7 +108,6 @@ export class FormatoMaestroComponent implements OnInit {
     );
 
   }
-
 
   irVistaCrearMaestro(){
     this._router.navigate([`/sgsst/${this.seccion}/formato-maestro/crear/${this.maestroActual.id}`]);
@@ -144,14 +142,11 @@ export class FormatoMaestroComponent implements OnInit {
   getContenidoMaestro(){
     if (this.funcionalidadMaestro=='ver' || this.funcionalidadMaestro=='editar') {
       const nombreQuery="maestrodocumentos/getarchivomaestro"
-      const queryParams=`estandar=${this.maestroActual.ubicacion}`;
+      const queryParams=`maestroId=${this.maestroActual.id}`;
       
       this._apiService.getQuery(nombreQuery,queryParams).subscribe(
         async (response: any) => {
-          this.contenidoMaestro = await response.mensaje;
-          
-          /*this.detalleDocumentoCrearForm.patchValue({
-            contenido: this.contenidoMaestro});*/
+          this.contenidoMaestro = await response.contenido;
         },
         error => {
           console.log(error);

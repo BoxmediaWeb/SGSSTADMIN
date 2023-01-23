@@ -49,6 +49,10 @@ const EstandarRoutes: Route[] = [
                 path: '', redirectTo: 'planear/E.1.1.1/0'
             },
             {
+                path     : ':seccion/documentos/:maestroId',
+                component: DocumentosComponent,
+            },
+            {
                 path     : ':seccion/detalle-documento/:funcionalidadDetalleDocumento/:idDinamico',
                 component: DetalleDocumentoComponent,
             },

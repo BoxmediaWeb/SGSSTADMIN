@@ -65,6 +65,7 @@ import { ElementoComponent } from './pages/elemento/elemento.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { EstandarComponent } from './modules/estandar/estandar.component';
+import { DetalleDocumentoModalComponent } from './modals/detalle-documento-modal/detalle-documento-modal.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -95,6 +96,7 @@ const routerConfig: ExtraOptions = {
         FormularioEstandarComponent,
         ElementoComponent,
         EstandarComponent,
+        DetalleDocumentoModalComponent,
     ],
     imports     : [
         CommonModule,

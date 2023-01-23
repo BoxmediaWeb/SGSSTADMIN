@@ -34,7 +34,7 @@
         <mat-tab [label]="'Editor'">
             <div class="mb-10 w-full">
                 <form [formGroup]="detalleDocumentoCrearForm" crossOrigin="Anonymous">
-                    <angular-editor height="500" formControlName="contenido" [config]="editorConfig"></angular-editor>
+                    <angular-editor height="500" formControlName="contenido" [(ngModel)]="contenidoDetalleDocumento" [config]="editorConfig"></angular-editor>
                 </form>
             </div>
         </mat-tab>

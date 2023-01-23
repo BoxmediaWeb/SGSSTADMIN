@@ -2,6 +2,7 @@
     <div class="relative mr-3 flex flex-col p-3 items-start justify-start w-full">
             <div class="ml-6 p-2 cursor-pointer rounded-lg bg-white shadow-lg shadow-slate-50">
                 <a
+                (click)="irVistaDocumentos()"
                 matTooltip="Archivos disponibles para este estándar">
                         <mat-icon
                             class="icon-size-10 text-hint"
@@ -21,7 +22,7 @@
 
                 <div class="flex items-center ml-6" *ngIf="maestro.tipoDocumento!='Matriz'">
                     <button
-                        (click)="irVistaDetalleDocumento()"
+                        (click)="irVistaCrearDetalleDocumento()"
                         class="hidden sm:inline-flex"
                         mat-stroked-button>
                         <mat-icon
@@ -44,6 +45,7 @@
 
             <div class="flex items-start w-full pl-6 pb-2" *ngIf="maestro.tipoDocumento=='Matriz'">
                 <button
+                    (click)="mutacionDetalleDocumentoModal()"
                     mat-flat-button
                     [color]="'primary'">
                     <mat-icon
@@ -84,7 +86,7 @@
                                     mat-cell
                                     *matCellDef="let budget">
                                     <span class="font-medium text-right">
-                                        Vigencia
+                                        {{budget?.vigencia}}
                                     </span>
                                 </td>
                             </ng-container>
@@ -115,7 +117,7 @@
                                 <td
                                     mat-cell
                                     *matCellDef="let budget">
-                                    Comentario
+                                    {{budget?.comentario}}
                                 </td>
                             </ng-container>
 
@@ -142,7 +144,7 @@
                                 <td
                                     mat-cell
                                     *matCellDef="let budget">
-                                    Esta es la version
+                                    {{budget?.version}}
                                 </td>
                             </ng-container>
 
@@ -157,12 +159,12 @@
                                     mat-cell
                                     *matCellDef="let budget">
 
-                                    <!--<span
+                                    <span
                                     class="inline-flex items-center font-bold text-xs px-2.5 py-0.5 rounded-full tracking-wide uppercase"
-                                    [ngClass]="{'bg-red-200 text-red-800 dark:bg-red-600 dark:text-red-50': budget.estado == 2,
-                                                'bg-green-200 text-green-800 dark:bg-green-600 dark:text-green-50': budget.estado == 1}">
-                                        <span class="leading-relaxed whitespace-nowrap">{{budget.estado == 1? 'Vigente' : budget.estado == 2? 'No Vigente':'---'}}</span>
-                                    </span>-->
+                                    [ngClass]="{'bg-red-200 text-red-800 dark:bg-red-600 dark:text-red-50': budget?.estado == 2,
+                                                'bg-green-200 text-green-800 dark:bg-green-600 dark:text-green-50': budget?.estado == 1}">
+                                        <span class="leading-relaxed whitespace-nowrap">{{budget?.estado == 1? 'Vigente' : budget?.estado == 2? 'No Vigente':'---'}}</span>
+                                    </span>
                                 </td>
                             </ng-container>
 
@@ -175,25 +177,28 @@
                                 <td
                                     mat-cell
                                     *matCellDef="let budget">
-                                    <!--<span style="display: flex;">
+                                    <span style="display: flex;">
                                         <button
+                                        *ngIf="budget.tipoDocumento!='Matriz'"
                                         class="min-w-10 min-h-7 h-7 px-2 leading-6 ml-2"
+                                        (click)="irVistaEditarDetalleDocumento(budget.id)"
                                         mat-stroked-button>
                                         <mat-icon
                                             class="icon-size-5"
                                             [svgIcon]="'heroicons_outline:pencil-alt'"></mat-icon>
                                         </button>
 
-
                                         <button
+                                        *ngIf="budget.tipoDocumento!='Matriz'"
                                         class="min-w-10 min-h-7 h-7 px-2 leading-6 ml-2"
+                                        (click)="irVistaVerDetalleDocumento(budget.id)"
                                         mat-stroked-button>
-                                        <mat-icon
-                                            class="icon-size-5"
-                                            [svgIcon]="'heroicons_outline:document-text'"></mat-icon>
+                                            <mat-icon
+                                                class="icon-size-5"
+                                                [svgIcon]="'heroicons_outline:document-text'"></mat-icon>
                                         </button>
 
-                                        <a class="cursor-pointer flex" [href]="budget.ubicacion" target="_blank">
+                                        <a *ngIf="budget.tipoDocumento=='Matriz'" class="cursor-pointer flex" [href]="budget.ubicacion" target="_blank">
                                             <span>Editar</span>
                                             <mat-icon
                                                 class="icon-size-5"
@@ -201,14 +206,14 @@
                                         </a>
 
                                         <button
+                                        (click)="borrarDetalleDocumento(budget)"
                                         class="min-w-10 min-h-7 h-7 px-2 leading-6 ml-2"
                                         mat-stroked-button>
-                                        <mat-icon
-                                            class="icon-size-5"
-                                            [svgIcon]="'heroicons_outline:trash'"></mat-icon>
+                                            <mat-icon
+                                                class="icon-size-5"
+                                                [svgIcon]="'heroicons_outline:trash'"></mat-icon>
                                         </button>
-
-                                    </span>-->
+                                    </span>
 
                                 </td>
                             </ng-container>

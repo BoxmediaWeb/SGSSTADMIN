@@ -1,1 +1,174 @@
-<p>documentos works!</p>
+<div class="flex flex-col flex-auto -m-5">
+
+    <mat-drawer-container class="flex flex-col flex-auto">
+
+        <mat-drawer
+            class="w-72 dark:bg-gray-900"
+            [autoFocus]="false"
+            [mode]="drawerMode"
+            [opened]="drawerOpened"
+            [position]="'end'"
+            #matDrawer>
+
+            <div class="flex flex-col flex-auto p-6">
+                <div class="flex items-center justify-end">
+                    <!--(click)="matDrawer.close()"-->
+                    <button
+                        mat-icon-button>
+                        <mat-icon [svgIcon]="'heroicons_outline:x'"></mat-icon>
+                    </button>
+                </div>
+
+                
+                <div class="aspect-w-9 aspect-h-6">
+                    <div class="flex items-center justify-center border rounded-lg bg-gray-50 dark:bg-card">
+                        <ng-container >
+                            <mat-icon
+                                class="icon-size-10 text-hint"
+                                [svgIcon]="'iconsmind:file'"></mat-icon>
+                        </ng-container>
+                    </div>
+                </div>
+                
+            <ng-container>
+                <div class="flex flex-col items-start mt-8" *ngIf="!documentoSeleccionado?.ubicacion">
+                    <div class="text-xl font-medium">No subido</div>
+
+                    <div
+                        class="mt-1 px-1.5 rounded text-sm font-semibold leading-5 text-white bg-amber-600">
+                        Documento
+                    </div>
+                </div>
+
+                <div class="flex flex-col items-start mt-8" *ngIf="documentoSeleccionado?.ubicacion">
+                    <div class="text-xl font-medium">{{documentoSeleccionado?.MaestroDocumento?.nombreCorto}}</div>
+
+                    <div
+                        class="mt-1 px-1.5 rounded text-sm font-semibold leading-5 text-white bg-amber-600">
+                        Documento
+                    </div>
+                </div>
+            </ng-container>
+
+                <ng-container *ngIf="documentoSeleccionado?.ubicacion">
+                    
+                    <div class="text-lg font-medium mt-2">Información</div>
+                    <div class="pt-4 border-t font-medium">
+                        <div class="flex flex-col justify-start text-start y-3">
+                            <div class="text-secondary" >Última subida</div>
+                            <div>{{documentoSeleccionado?.createdAt}}</div>
+                        </div>
+                        <div class="flex items-center justify-between py-3">
+                            <div class="text-secondary">Subido por</div>
+                            <div>gfhfgh</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between mt-2">
+                        <div class="text-lg font-medium">Descripción</div>
+                    </div>
+                    <div class="flex">
+                        <div>
+                            <ng-container>
+                                <div>{{documentoSeleccionado?.descirpcion}}</div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </ng-container>
+
+                <div class="flex justify-between w-full mt-8">
+                    <!--(click)="mutacionDetalleDocumentoModal()"-->
+                    <button
+                        (click)="mutacionDetalleDocumentoModal()"
+                        mat-flat-button
+                        [color]="'primary'">
+                        Subir
+                        <mat-icon
+                        class="mr-1"
+                        [svgIcon]="'heroicons_outline:upload'"></mat-icon>
+                    </button>
+                    <!--(click)="downloadDocumento(linkDescarga)"-->
+                    <a
+                        download
+                        mat-flat-button
+                        [color]="'primary'">
+                        <mat-icon
+                        [svgIcon]="'heroicons_outline:download'"></mat-icon>
+                    </a>
+                    <!--(click)="limpiarDetalleDocumento()"-->
+                    <button
+                        mat-stroked-button>
+                            <mat-icon
+                                [svgIcon]="'heroicons_outline:trash'"></mat-icon>
+                    </button>
+                </div>
+
+            </div>
+
+        </mat-drawer>
+
+        <mat-drawer-content class="flex flex-col overflow-hidden">
+
+            <div
+                class="flex-auto p-6 sm:p-10 overflow-y-auto"
+                cdkScrollable>
+
+                <div class="h-400 min-h-400 max-h-400">
+                    
+                    <ng-container >
+                        <div>
+                            <div class="font-medium">Archivos</div>
+                            <div class="flex flex-wrap -m-2 mt-2">
+                                <ng-container *ngFor="let documento of dataListaDocumentos">
+                                    <a
+                                        (click)="selectMaestro(documento.id)"
+                                        class="flex flex-col w-40 h-40 m-2 p-4 shadow rounded-2xl cursor-pointer bg-card"
+                                        >
+
+                                        <mat-icon
+                                        *ngIf="documento.ubicacion"
+                                        class="icon-size-5 text-green-500"
+                                        [svgIcon]="'heroicons_solid:check-circle'"></mat-icon>
+
+                                        <mat-icon
+                                        *ngIf="!documento.ubicacion"
+                                        class="icon-size-5 opacity-30"
+                                        [svgIcon]="'heroicons_solid:x-circle'"></mat-icon>
+
+
+                                        <div class="aspect-w-9 aspect-h-5">
+                                            <div class="flex items-center justify-center">
+                                                
+                                                <div class="relative">
+                                                    <mat-icon
+                                                        class="icon-size-10 text-hint"
+                                                        [svgIcon]="'iconsmind:file'"></mat-icon>
+                                                    <div
+                                                        class="absolute left-0 bottom-0 px-1.5 rounded text-sm font-semibold leading-5 text-white bg-red-600">
+                                                        Doc
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col flex-auto justify-center text-center text-sm font-medium">
+                                            <div
+                                                class="truncate"
+                                                >{{documento?.MaestroDocumento?.nombreCorto}}</div>
+                                            <ng-container>
+                                                <div class="text-secondary truncate">{{documento?.MaestroDocumento?.ubicacion}}</div>
+                                            </ng-container>
+                                        </div>
+                                    </a>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </ng-container>
+
+                </div>
+
+            </div>
+
+        </mat-drawer-content>
+
+    </mat-drawer-container>
+</div>

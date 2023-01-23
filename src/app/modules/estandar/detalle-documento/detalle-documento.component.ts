@@ -84,35 +84,36 @@ export class DetalleDocumentoComponent implements OnInit {
 
   constructor(private _activatedRoute: ActivatedRoute,private _apiService:ApiService,private _estandarService:EstandarService,private _formBuilder: FormBuilder,private _snackbar:MatSnackBar,private _router:Router,private _snackBar: MatSnackBar) { }
 
+  
+ crearDetalleDocumento()
+ {
+   const nombreQuery="detalledocumentos";
 
-  crearDetalleDocumento()
-  {
-    const nombreQuery="detalledocumentos/setdetalledocumento";
+   const dataQuery = {
+     fecha:"12-12-200",
+     maestroId:this.idDinamico,
+     version:"1.0",
+     comentario:"CCCOOOMMMENNNTARRRIIIIOOO",
+     estado: 1,
+     contenido:this.contenidoDetalleDocumento
+   }
 
-    //const detalleDocumento=this.detalleDocumentoForm.value;
+   this._apiService.postQuery(nombreQuery,dataQuery).subscribe(
+     (response: any) => {
 
-    const dataQuery = {
-      estandar:this.maestroActual.ubicacion,
-      indice:this.indice,
-      valor:`${this.contenidoDetalleDocumento}`,
-      fecha:"12-12-2020",
-      version:"2.0",
-      comentario:"blablablablablabla"
-    }
-
-    this._apiService.postQuery(nombreQuery,dataQuery).subscribe(
-      (response: any) => {
         this.irVistaListaDetalleDocumentos();
-      },
-      error => {
-        console.log(error);
 
-        this._snackbar.open('Error', null, {
-          duration: 4000
-        });
-      }
-    );
- }
+     },
+     error => {
+       console.log(error);
+
+       this._snackbar.open('Error', null, {
+         duration: 4000
+       });
+     }
+   );
+}
+
 
   irVistaCrearMaestro(){
     this._router.navigate([`/sgsst/${this.seccion}/formato-maestro/crear/${this.maestroActual.id}`]);
@@ -148,14 +149,11 @@ export class DetalleDocumentoComponent implements OnInit {
     if (this.funcionalidadDetalleDocumento=='crear') {
       /*En esta vista el id es el del maestro*/
       const nombreQuery="maestrodocumentos/getarchivomaestro"
-      const queryParams=`estandar=${this.maestroActual.ubicacion}`;
+      const queryParams=`maestroId=${this.maestroActual.id}`;
       
       this._apiService.getQuery(nombreQuery,queryParams).subscribe(
         async (response: any) => {
-          this.contenidoDetalleDocumento = await response.mensaje;
-          
-          this.detalleDocumentoCrearForm.patchValue({
-            contenido: this.contenidoDetalleDocumento});
+          this.contenidoDetalleDocumento = await response.contenido;
         },
         error => {
           console.log(error);
@@ -165,7 +163,7 @@ export class DetalleDocumentoComponent implements OnInit {
           });
         }
       );
-    } else if(this.funcionalidadDetalleDocumento=='editar'){
+    } else if(this.funcionalidadDetalleDocumento=='editar' || this.funcionalidadDetalleDocumento=='ver'){
       /*En esta vista el id es el del detalleDocumento*/
       const nombreQuery="detalledocumentos/getdetalledocumento"
       const queryParams=`id=${this.idDinamico}`
@@ -174,7 +172,7 @@ export class DetalleDocumentoComponent implements OnInit {
       this._apiService.getQuery(nombreQuery,queryParams).subscribe(
         (response: any) => {
    
-            this.contenidoDetalleDocumento = response.archivo;
+            this.contenidoDetalleDocumento = response.contenido;
    
             this._snackbar.open('Imágen guardada', null, {
               duration: 4000
