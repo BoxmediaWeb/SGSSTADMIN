@@ -19,12 +19,15 @@ export class DetalleDocumentoModalComponent implements OnInit {
     archivo     : [, []],
     ubicacion     : [, []],
   });
+  archivoDocumentoSeleccionado: any;
 
   guardar(){
-    if (this.data.maestroDocumento.tipoDocumento=="Matriz") {
+    if (this.data.maestroDocumento) {
       this.guardarDetalleDocumentoMatriz();
-    }else{
-      
+    }
+    
+    if(this.data.detalleDocumento) {
+      this.guardarDocumentoArchivo();
     }
   }
 
@@ -48,6 +51,33 @@ export class DetalleDocumentoModalComponent implements OnInit {
       }
     );
  }
+
+  CambioInputArchivo(fileInputEvent: any) {
+    this.archivoDocumentoSeleccionado= fileInputEvent.target.files[0];
+  }
+
+ 
+ guardarDocumentoArchivo()
+ {
+   const nombreQuery = "detalledocumentos/upload";
+   const valores=this.detalleDocumentoForm.value;
+   const formData = new FormData();
+   formData.append("documentoId", this.data.detalleDocumento.id);
+   formData.append("version", valores.version);
+   formData.append("comentario", valores.comentario);
+   formData.append("fecha", valores.fecha);
+   formData.append("archivoDocumento", this.archivoDocumentoSeleccionado);
+
+   this._apiService.postQueryFile(nombreQuery, formData).subscribe(
+     (response: any) => {
+       
+       this.dialogRef.close();
+     },
+     error => {
+       console.log(error);
+     }
+   );
+}
 
   constructor(private _formBuilder: FormBuilder,@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<DetalleDocumentoModalComponent>,private _apiService: ApiService) { }
 

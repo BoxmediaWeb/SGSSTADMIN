@@ -49,9 +49,9 @@ export class ListaDetalleDocumentosComponent implements OnInit {
   
     this._apiService.getQuery(nombreQuery,queryParams).
     subscribe((response) => {
-      console.log("Respuestas de maestros =>", response);
       this.dataMaestros = response.filter((elemento)=>{return elemento.tipoDocumento!="Documento"});
       this.dataMaestroDocumentos = response.filter((elemento)=>{return elemento.tipoDocumento=="Documento"});
+      this._estandarService.setDocumentosLength(this.dataMaestroDocumentos.length);
       this._estandarService.setMaestroActual(this.dataMaestros[this.indice]);
      });
   }

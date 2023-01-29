@@ -4,7 +4,7 @@
 
         <mat-drawer
             class="w-72 dark:bg-gray-900"
-            [autoFocus]="false"
+            [autoFocus]="true"
             [mode]="drawerMode"
             [opened]="drawerOpened"
             [position]="'end'"
@@ -79,6 +79,7 @@
                 <div class="flex justify-between w-full mt-8">
                     <!--(click)="mutacionDetalleDocumentoModal()"-->
                     <button
+                        *ngIf="!documentoSeleccionado?.ubicacion"
                         (click)="mutacionDetalleDocumentoModal()"
                         mat-flat-button
                         [color]="'primary'">
@@ -87,16 +88,18 @@
                         class="mr-1"
                         [svgIcon]="'heroicons_outline:upload'"></mat-icon>
                     </button>
-                    <!--(click)="downloadDocumento(linkDescarga)"-->
                     <a
+                        *ngIf="documentoSeleccionado?.ubicacion"
                         download
                         mat-flat-button
                         [color]="'primary'">
                         <mat-icon
                         [svgIcon]="'heroicons_outline:download'"></mat-icon>
                     </a>
-                    <!--(click)="limpiarDetalleDocumento()"-->
+
                     <button
+                        *ngIf="documentoSeleccionado?.ubicacion"
+                        (click)="limpiarDocumento()"
                         mat-stroked-button>
                             <mat-icon
                                 [svgIcon]="'heroicons_outline:trash'"></mat-icon>

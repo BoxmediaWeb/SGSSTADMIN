@@ -1,7 +1,8 @@
 <div class="flex flex-col flex-auto">
     <!-- Header -->
     <div class="flex items-center justify-between">
-        <div class="text-2xl font-semibold">{{data?.maestroDocumento?.nombreCorto}}</div>
+        <div *ngIf="data?.maestroDocumento" class="text-2xl font-semibold">{{data?.maestroDocumento?.nombreCorto}}</div>
+        <div *ngIf="data?.detalleDocumento" class="text-2xl font-semibold">{{data?.detalleDocumento?.MaestroDocumento?.nombreCorto}}</div>
         <button
             (click)="this.dialogRef.close()"
             matDialogClose
@@ -42,7 +43,7 @@
             <textarea matInput [formControlName]="'comentario'"  id="comentario" cols="30" rows="5"></textarea>
         </mat-form-field>
 
-        <mat-form-field class="w-full" *ngIf="data.maestroDocumento.tipoDocumento=='Matriz'">
+        <mat-form-field class="w-full" *ngIf="data.maestroDocumento">
             <mat-label>Ubicación</mat-label>
             <input
                 id="fecha"
@@ -52,7 +53,7 @@
                 >
         </mat-form-field>
 
-        <mat-form-field class="w-full" *ngIf="data.maestroDocumento.tipoDocumento=='Matriz'">
+        <mat-form-field class="w-full" *ngIf="data.maestroDocumento">
             <mat-label>Vigencia</mat-label>
             <input
                 id="fecha"
@@ -62,11 +63,11 @@
                 >
         </mat-form-field>
 
-        <!--(change)="CambioInputArchivo($event)"-->
-        <input *ngIf="data.maestroDocumento.tipoDocumento!='Matriz'" [formControlName]="'archivo'" #inputArchivo hidden="true" accept="application/pdf" type="file">
-
+        <input #inputArchivo (change)="CambioInputArchivo($event)" [formControlName]="'archivo'" hidden="true" accept="application/pdf" type="file">
+        
         <button
-        *ngIf="data.maestroDocumento.tipoDocumento!='Matriz'"
+        (click)="inputArchivo.click()"
+        *ngIf="!data.maestroDocumento"
         mat-flat-button
         [color]="'primary'">
             <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
@@ -74,12 +75,12 @@
         </button>
 
         <div
-        class="flex items-center leading-5 text-md text-secondary ml-2 mt-3" *ngIf="data.maestroDocumento.tipoDocumento!='Matriz'">
+        class="flex items-center leading-5 text-md text-secondary ml-2 mt-3" *ngIf="!data.maestroDocumento">
             <mat-icon
                 class="icon-size-5 text-hint"
                 [svgIcon]="'heroicons_solid:clipboard'"></mat-icon>
 
-            <div class="ml-1.5">jhkhgjkhjg</div>
+            <div class="ml-1.5">{{archivoDocumentoSeleccionado?.name}}</div>
         </div>
 
     </form>

@@ -24,6 +24,23 @@ export class DocumentosComponent implements OnInit {
   documentoSeleccionado: any;
   linkDescarga: any;
 
+
+  limpiarDocumento(){
+    const nombreQuery =`detalledocumentos/limpiardocumento/${this.documentoSeleccionado.id}`;
+    const queryParams=``;
+  
+    this._apiService.getQuery(nombreQuery,queryParams).
+    subscribe(async (response) => {
+      this.getListaDetalleDocumentos();
+      this.drawerOpened = await false;
+     },
+     error=>{
+       console.log(error);
+       console.log("Este es el valor del error =>", error);
+     }
+     );
+  }
+
   getListaDetalleDocumentos(){
     const nombreQuery ='detalledocumentos';
     const queryParams=`ubicacion=${this.maestroActual.ubicacion}&tipoDocumento=Documento`;
@@ -77,13 +94,14 @@ export class DocumentosComponent implements OnInit {
     const dialogRef = this._dialog.open(DetalleDocumentoModalComponent, {
       minWidth: '500px',
       data:{
-        maestroDocumento:this.maestroActual
+        detalleDocumento:this.documentoSeleccionado
       }
     });
     dialogRef.afterClosed().subscribe((result: any) => {
       this.getListaDetalleDocumentos();
     });
   }
+  
 
   constructor(private _apiService:ApiService,private _estandarService:EstandarService,private _activatedRoute: ActivatedRoute,public _dialog: MatDialog) { }
 

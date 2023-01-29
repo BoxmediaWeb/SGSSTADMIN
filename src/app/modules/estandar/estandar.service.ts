@@ -9,6 +9,11 @@ export class EstandarService {
   private maestroActual$: BehaviorSubject<any> = new BehaviorSubject<any>({});
   private codigoEstandar$: BehaviorSubject<string> = new BehaviorSubject<string>("derecha");
   private indice$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  private documentosLength$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+
+  getDocumentosLength(){
+    return this.documentosLength$.asObservable();
+  }
 
   getSeccion(){
     return this.seccion$.asObservable();
@@ -24,6 +29,10 @@ export class EstandarService {
 
   getIndice(){
     return this.indice$.asObservable();
+  }
+
+  setDocumentosLength(valor){
+    this.documentosLength$.next(valor);
   }
 
   setSeccion(valor){
