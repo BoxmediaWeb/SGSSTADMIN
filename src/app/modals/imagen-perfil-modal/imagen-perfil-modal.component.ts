@@ -28,7 +28,7 @@ export class ImagenPerfilModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("Esta es la imagen recibida =>",this.imgPrevisualizacion);
+    
   }
 
   cerrarModal(){

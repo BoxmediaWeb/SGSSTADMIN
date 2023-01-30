@@ -72,7 +72,7 @@ export class EventoModalComponent implements OnInit {
             if(result=="confirmed"){
               this.borrarEvento();
             }else{
-              console.log("Ha cancelado la operación");
+              
             }
         });
     }

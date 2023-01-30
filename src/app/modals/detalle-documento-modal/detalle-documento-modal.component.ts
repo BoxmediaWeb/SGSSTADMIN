@@ -82,7 +82,7 @@ export class DetalleDocumentoModalComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder,@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<DetalleDocumentoModalComponent>,private _apiService: ApiService) { }
 
   ngOnInit(): void {
-    console.log("Maestro documento desde el modal",this.data.maestroDocumento);
+    
   }
 
 }
