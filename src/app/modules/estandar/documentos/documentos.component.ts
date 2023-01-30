@@ -73,13 +73,13 @@ export class DocumentosComponent implements OnInit {
       this.seccion=await params.get('seccion');
       this.maestroId=await params.get('maestroId');
       this.getMaestrosDocumento();
-      this.getListaDetalleDocumentos();
     });
   }
 
   getMaestroActual(){
     this._estandarService.getMaestroActual().subscribe(async(maestro)=>{
       this.maestroActual= await maestro;
+      this.getListaDetalleDocumentos();
     });
   }
 
