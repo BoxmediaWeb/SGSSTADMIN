@@ -48,7 +48,7 @@
                 <div class="flex flex-col items-center justify-center">
 
                 <div class="relative mr-3 inset-0 flex flex-col p-3 cursor-pointer items-center justify-center">
-                    <a
+                    <button mat-icon-button
                         (click)="irVistaDocumentos()"
                         *ngIf="documentosLength>0"
                         matTooltip="Archivos disponibles para este estándar"
@@ -56,11 +56,11 @@
                         <div>
                             <div class="flex flex-col items-center justify-center">
                                 <mat-icon
-                                    class="icon-size-10 text-hint text-orange-900"
+                                    class="icon-size-8 text-hint"
                                     [svgIcon]="'iconsmind:folder'"></mat-icon>
                             </div>
                         </div>
-                    </a>
+                    </button>
                 </div>
             </div>
 

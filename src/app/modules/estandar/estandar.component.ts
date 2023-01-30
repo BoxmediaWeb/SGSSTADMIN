@@ -24,8 +24,6 @@ export class EstandarComponent implements OnInit {
     this._router.navigate([`/sgsst/${this.seccion}/documentos/${this.maestroActual.id}`]);
   }
 
-
-
   ngOnInit(): void {
     this.drawerOpened=true;
     this.drawerMode = 'side';

@@ -118,7 +118,7 @@ export class FormatoMaestroComponent implements OnInit {
   }
 
   irVistaListaDetalleDocumentos(){
-    this._router.navigate([`/sgsst/${this.seccion}/${this.maestroActual.ubicacion}/0`]);
+    this._router.navigate([`/sgsst/${this.seccion}/${this.maestroActual.ubicacion}`]);
   }
 
   getMaestrosDocumento(){
