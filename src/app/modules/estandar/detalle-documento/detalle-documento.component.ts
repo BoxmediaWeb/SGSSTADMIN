@@ -142,6 +142,7 @@ export class DetalleDocumentoComponent implements OnInit {
       this.seccion=params.get('seccion');
       this.idDinamico=params.get('idDinamico');
       this.funcionalidadDetalleDocumento=params.get('funcionalidadDetalleDocumento');
+      this.getMaestrosDocumento();
     });
   }
 
@@ -192,21 +193,13 @@ export class DetalleDocumentoComponent implements OnInit {
   getMaestroActual(){
     this._estandarService.getMaestroActual().subscribe((maestro)=>{
       this.maestroActual=maestro;
-    });
-  }
-
-  getIndice(){
-    this._estandarService.getIndice().subscribe(async(indice)=>{
-      this.indice = await indice;
+      this.getContenidoMaestro();
     });
   }
 
   ngOnInit(): void {
-    this.getParamsRuta();
-    this.getIndice();
-    this.getMaestrosDocumento();
     this.getMaestroActual();
-    this.getContenidoMaestro();
+    this.getParamsRuta();
   }
 
 }

@@ -136,6 +136,7 @@ export class FormatoMaestroComponent implements OnInit {
       this.seccion=params.get('seccion');
       this.idMaestro=params.get('idMaestro');
       this.funcionalidadMaestro=params.get('funcionalidadMaestro');
+      this.getMaestrosDocumento();
     });
   }
 
@@ -162,14 +163,13 @@ export class FormatoMaestroComponent implements OnInit {
   getMaestroActual(){
     this._estandarService.getMaestroActual().subscribe((maestro)=>{
       this.maestroActual=maestro;
+      this.getContenidoMaestro();
     });
   }
 
   ngOnInit(): void {
-    this.getParamsRuta();
-    this.getMaestrosDocumento();
     this.getMaestroActual();
-    this.getContenidoMaestro();
+    this.getParamsRuta();
   }
 
 }
