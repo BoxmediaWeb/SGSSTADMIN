@@ -14,7 +14,6 @@ export class EstandarComponent implements OnInit {
   drawerMode: 'side' | 'over';
   drawerOpened: boolean;
   menuData=[];
-  secciones={planear:planearMenu,verificar:verificarMenu,hacer:hacerMenu,actuar:actuarMenu}
   maestroActual: any;
   seccion: string;
   documentosLength: number;
@@ -25,19 +24,47 @@ export class EstandarComponent implements OnInit {
     this._router.navigate([`/sgsst/${this.seccion}/documentos/${this.maestroActual.id}`]);
   }
 
+
+
   ngOnInit(): void {
     this.drawerOpened=true;
     this.drawerMode = 'side';
-    this.menuData = planearMenu;
+
+    this._estandarService.getSeccion().subscribe(async(seccion)=>{
+      this.seccion = await seccion;
+
+      switch(seccion){
+        case 'planear':
+          this.menuData = planearMenu;
+          break;
+        
+        case 'hacer':
+          this.menuData = hacerMenu;
+          break;
+
+        case 'verificar':
+          this.menuData = verificarMenu;
+          break;
+        
+        case 'actuar':
+          this.menuData = actuarMenu;
+          break;
+      }
+
+    });
 
     this._estandarService.getMaestroActual().subscribe(async(maestro)=>{
       this.maestroActual = await maestro;
     });
 
     this._estandarService.getDocumentosLength().subscribe(async(documentosLength)=>{
-      this.documentosLength = documentosLength;
+      this.documentosLength = await documentosLength;
     });
 
+    this._activatedRoute.firstChild.paramMap.subscribe((params) => {
+      this._estandarService.setSeccion(params.get('seccion'));
+    });
+    
   }
 
 }

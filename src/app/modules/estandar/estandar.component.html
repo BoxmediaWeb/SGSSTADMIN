@@ -20,7 +20,7 @@
             class="flex flex-col"
             fuseScrollReset>
             
-            <div class="flex w-full flex-row flex-0 p-5 border-b bg-card">
+            <div *ngIf="maestroActual?.id" class="flex w-full flex-row flex-0 p-5 border-b bg-card">
                 <div class="flex-1 min-w-0">
                     <div class="flex flex-wrap items-center font-medium">
                         <div>
@@ -56,7 +56,7 @@
                         <div>
                             <div class="flex flex-col items-center justify-center">
                                 <mat-icon
-                                    class="icon-size-10 text-hint"
+                                    class="icon-size-10 text-hint text-orange-900"
                                     [svgIcon]="'iconsmind:folder'"></mat-icon>
                             </div>
                         </div>

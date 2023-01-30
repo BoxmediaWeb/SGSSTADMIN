@@ -85,7 +85,7 @@ export const appRoutes: Route[] = [
             {path: 'seccion/:grupo', loadChildren: () => import('app/pages/seccion/seccion.module').then(m => m.SeccionModule)},
             
             /*Antigua*/
-            {path: 'estandar', loadChildren: () => import('app/pages/elemento/elemento.module').then(m => m.ElementoModule)},
+            //{path: 'estandar', loadChildren: () => import('app/pages/elemento/elemento.module').then(m => m.ElementoModule)},
 
             /*Actual*/
             {path: 'sgsst', loadChildren: () => import('app/modules/estandar/estandar.module').then(m => m.EstandarModule)},

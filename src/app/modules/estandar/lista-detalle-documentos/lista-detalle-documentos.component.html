@@ -1,16 +1,4 @@
 <section class="overflow-hidden">
-    <!--<div class="relative mr-3 flex flex-col p-3 items-start justify-start w-full">
-            <div class="ml-6 p-2 cursor-pointer rounded-lg bg-white shadow-lg shadow-slate-50">
-                <a
-                (click)="irVistaDocumentos()"
-                matTooltip="Archivos disponibles para este estándar">
-                        <mat-icon
-                            class="icon-size-10 text-hint"
-                            [svgIcon]="'iconsmind:folder'"></mat-icon>
-                </a>
-            </div>
-    </div>-->
-    
     <mat-tab-group  class="pt-2" (selectedTabChange)="tabChanged($event)">
         <mat-tab *ngFor="let maestro of dataMaestros" [label]="maestro.nombreCorto">
             <div class="ml-6">

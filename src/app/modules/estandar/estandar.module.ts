@@ -46,7 +46,16 @@ const EstandarRoutes: Route[] = [
         component: EstandarComponent,
         children : [
             {
-                path: '', redirectTo: 'planear/E.1.1.1/0'
+                path: 'planear', redirectTo: 'planear/E.1.1.1'
+            },
+            {
+                path: 'hacer', redirectTo: 'hacer/E.3.1.1'
+            },
+            {
+                path: 'verificar', redirectTo: 'verificar/E.6.1.1'
+            },
+            {
+                path: 'actuar', redirectTo: 'actuar/E.8.1.1'
             },
             {
                 path     : ':seccion/documentos/:maestroId',
@@ -61,7 +70,7 @@ const EstandarRoutes: Route[] = [
                 component: FormatoMaestroComponent,
             },
             {
-                path     : ':seccion/:codigoEstandar/:indice',
+                path     : ':seccion/:codigoEstandar',
                 component: ListaDetalleDocumentosComponent,
             }
         ]

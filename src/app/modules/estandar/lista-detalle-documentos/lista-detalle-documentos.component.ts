@@ -52,7 +52,12 @@ export class ListaDetalleDocumentosComponent implements OnInit {
       this.dataMaestros = response.filter((elemento)=>{return elemento.tipoDocumento!="Documento"});
       this.dataMaestroDocumentos = response.filter((elemento)=>{return elemento.tipoDocumento=="Documento"});
       this._estandarService.setDocumentosLength(this.dataMaestroDocumentos.length);
-      this._estandarService.setMaestroActual(this.dataMaestros[this.indice]);
+      if (this.dataMaestros.length>0) {
+        console.log(this.dataMaestroDocumentos);
+        this._estandarService.setMaestroActual(this.dataMaestros[this.indice]); 
+      }else{
+        this._estandarService.setMaestroActual(this.dataMaestroDocumentos[0]);
+      }
      });
   }
 
@@ -60,7 +65,11 @@ export class ListaDetalleDocumentosComponent implements OnInit {
     this._activatedRoute.parent.firstChild.paramMap.subscribe((params) => {
       this.seccion=params.get('seccion');
       this.codigoEstandar=params.get('codigoEstandar');
-      this.indice=params.get('indice');
+      this.indice=0;
+      //this.indice=params.get('indice');
+      this.getMaestroActual();
+      this.getMaestrosDocumentos();
+      this.getListaDetalleDocumentos();
     });
   }
 
@@ -120,9 +129,11 @@ export class ListaDetalleDocumentosComponent implements OnInit {
   ngOnInit(): void {
     this.displayedColumns = ['vigencia','usuario','comentario','fecha','version','estado','acciones'];
     this.getParamsRuta();
-    this.getMaestroActual();
-    this.getMaestrosDocumentos();
-    this.getListaDetalleDocumentos();
+
+    /*this._router.events.subscribe((event) => {
+      this.getParamsRuta();
+      this.getMaestroActual();
+    });*/
   }
 
 }
