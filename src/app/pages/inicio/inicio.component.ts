@@ -256,7 +256,7 @@ export class InicioComponent implements OnInit {
   
   getDetalleDocumento(){
     const nombreQuery ='detalledocumentos';
-    const queryParams='';
+    const queryParams='_tipoDocumento=Documento';
   
     this._apiService.getQuery(nombreQuery,queryParams).
     subscribe((response) => {
